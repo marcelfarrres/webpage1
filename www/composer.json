@@ -1,10 +1,10 @@
 {
-  "name": "project/bookworm",
+  "name": "marcel/slimskeleton",
   "description": "PWII Final Project - Bookworm",
   "type": "project",
   "autoload": {
     "psr-4": {
-      "Project\\Bookworm\\": "src/"
+      "PWP\\": "src/"
     }
   },
   "authors": [
@@ -15,10 +15,10 @@
   ],
   "require": {
     "ext-pdo": "*",
-    "slim/slim": "4.10.0",
-    "slim/psr7": "1.5",
-    "php-di/slim-bridge": "^3.1",
-    "slim/twig-view": "3.3",
+    "slim/slim": "^4.13",
+    "slim/psr7": "^1.6",
+    "php-di/slim-bridge": "^3.4",
+    "slim/twig-view": "^3.3",
     "ext-json": "*"
   }
 
