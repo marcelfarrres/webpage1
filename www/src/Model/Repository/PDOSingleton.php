@@ -2,8 +2,7 @@
 
 declare(strict_types=1);
 
-namespace PWP\Model\Repository; //Take care if you added the Repository folder inside Model folder or outside that
-
+namespace PWP\Model\Repository; 
 use PDO;
 
 final class PDOSingleton

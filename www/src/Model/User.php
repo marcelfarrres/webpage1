@@ -8,34 +8,29 @@ use DateTime;
 
 final class User
 {
-    private int $id;
+
     private string $email;
-    private string $password;
-    private DateTime $createdAt;
-    private DateTime $updatedAt;
+    private string $password; 
+    private string $username;  
+    private string $profile_picture;
+    private DateTime $created_at;
+    private DateTime $updated_at;
 
     public function __construct(
         string $email,
         string $password,
-        DateTime $createdAt,
-        DateTime $updatedAt
+        
+        DateTime $created_at,
+        DateTime $updated_at
     ) {
         $this->email = $email;
         $this->password = $password;
-        $this->createdAt = $createdAt;
-        $this->updatedAt = $updatedAt;
+        
+        $this->created_at = $created_at;
+        $this->updated_at = $updated_at;
     }
 
-    public function id(): int
-    {
-        return $this->id;
-    }
-
-    public function setId(int $id): self
-    {
-        $this->id = $id;
-        return $this;
-    }
+    
 
     public function email(): string
     {
@@ -47,13 +42,23 @@ final class User
         return $this->password;
     }
 
-    public function createdAt(): DateTime
+    public function username(): string
     {
-        return $this->createdAt;
+        return $this->username;
+    }
+    
+    public function profile_picture(): string
+    {
+        return $this->profile_picture;
     }
 
-    public function updatedAt(): DateTime
+    public function created_at(): DateTime
     {
-        return $this->updatedAt;
+        return $this->created_at;
+    }
+
+    public function updated_at(): DateTime
+    {
+        return $this->updated_at;
     }
 }

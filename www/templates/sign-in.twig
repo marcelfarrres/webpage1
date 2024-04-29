@@ -1,0 +1,27 @@
+{% extends 'base.twig' %}
+
+{% block title %}
+    SIGN-IN
+{% endblock %}
+
+{% block content %}
+<span data-cy="sign-in__message">{% if fromNews %}You must be logged in to access the news page.{% endif %}</span>
+    <form data-cy="sign-in" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8">
+        <label for="email">Email:</label>
+        <input data-cy="sign-in__email" type="text" id="email" name="email" value="{% if formData.email %}{{ formData.email }}{% endif %}">
+        {% if formErrors.email %}
+            <span data-cy="sign-in__wrongEmail" style="color: red;">{{ formErrors.email }}</span>
+        {% endif %}
+        
+        <label for="password">Password:</label>
+        <input  data-cy="sign-in__password" type="password" id="password" name="password">
+        {% if formErrors.password %}
+            <span data-cy="sign-in__wrongPassword" style="color: red;">{{ formErrors.password }}</span>
+        {% endif %}
+
+        <input data-cy="sign-in__btn" type="submit" value="SIGN IN">
+
+    
+    </form>
+    {#<a href="{{ url_for("home") }}">Home</a>#}
+{% endblock %}
