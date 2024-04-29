@@ -6,7 +6,10 @@
     - [x] Sign-in
 
 - [ ] Private Pages
-    - [ ] User Profile
+    - [ ] User Profile: Create a function in UserRepository for retrieving all info from an user,
+                        then create a $user and passit to the twig, also add the routing for 
+                        /profile GET and for /profile PUT, the first one for show the twig Profile and the second one for updating the User info.
+    
     - [ ] Book Catalogue
     - [ ] Book Details
     - [ ] Book Ratings and Reviews

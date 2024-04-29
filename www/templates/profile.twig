@@ -1,0 +1,32 @@
+{% extends "base.twig" %}
+
+{% block title %}Profile page{% endblock %}
+
+{% block content %}
+    <form action="/update-profile" method="post" enctype="multipart/form-data">
+        <div>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="{{ user.email }}" disabled>
+        </div>
+        <div>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="{{ user.username }}">
+            {% if errors.username %}
+                <p class="error">{{ errors.username }}</p>
+            {% endif %}
+        </div>
+        <div>
+            <label for="profile-picture">Profile Picture:</label>
+            <input type="file" id="profile-picture" name="profile-picture" accept="image/png, image/jpeg, image/gif, image/svg+xml">
+            {% if errors.profile_picture %}
+                <p class="error">{{ errors.profile_picture }}</p>
+            {% endif %}
+            {% if user.profile_picture %}
+                <img src="/uploads/{{ user.profile_picture }}" alt="Profile Picture">
+            {% else %}
+                <img src="/placeholder.jpg" alt="Placeholder">
+            {% endif %}
+        </div>
+        <button type="submit">Update Profile</button>
+    </form>
+{% endblock %}
