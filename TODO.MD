@@ -1,9 +1,9 @@
 # TODO 1rst srpint (create a functional flow)
 
 - [ ] Public Pages
-    - [ ] Landing Page
+    - [x] Landing Page
     - [x] Sign-up
-    - [ ] Sign-in
+    - [x] Sign-in
 
 - [ ] Private Pages
     - [ ] User Profile
