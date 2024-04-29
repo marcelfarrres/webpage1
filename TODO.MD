@@ -2,7 +2,7 @@
 
 - [ ] Public Pages
     - [ ] Landing Page
-    - [ ] Sign-up
+    - [x] Sign-up
     - [ ] Sign-in
 
 - [ ] Private Pages

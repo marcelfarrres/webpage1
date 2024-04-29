@@ -3,13 +3,6 @@
 {% block title %}Home page{% endblock %}
 
 {% block content %}
-    <h1>Hello world!</h1>
-
-    {% if notifications is not empty %}
-        <ol>
-            {% for notification in notifications %}
-                <li>{{ notification }}</li>
-            {% endfor %}
-        </ol>
-    {% endif %}
+    <button onclick="window.location.href='/sign-in'">Sign In</button>
+    <button onclick="window.location.href='/sign-up'">Sign Up</button>
 {% endblock %}
