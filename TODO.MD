@@ -1,9 +1,9 @@
 # TODO 1rst srpint (create a functional flow)
 
-- [ ] Public Pages
-    - [x] Landing Page
-    - [x] Sign-up
-    - [x] Sign-in
+- [x] Public Pages
+    - [x] Landing Page (Marcel)
+    - [x] Sign-up (Marcel)
+    - [x] Sign-in (Marcel)
 
 - [ ] Private Pages
     - [ ] User Profile: Create a function in UserRepository for retrieving all info from an user,
