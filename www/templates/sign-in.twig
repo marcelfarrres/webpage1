@@ -5,23 +5,23 @@
 {% endblock %}
 
 {% block content %}
-<span data-cy="sign-in__message">{% if fromNews %}You must be logged in to access the news page.{% endif %}</span>
-    <form data-cy="sign-in" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8">
-        <label for="email">Email:</label>
-        <input data-cy="sign-in__email" type="text" id="email" name="email" value="{% if formData.email %}{{ formData.email }}{% endif %}">
+<div class="main_container">
+    <span class="sign-in__message" data-cy="sign-in__message">{% if fromNews %}You must be logged in to access the news page.{% endif %}</span>
+    <form class="secondary_container" data-cy="sign-in" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8">
+        <label class="label" for="email">Email:</label>
+        <input class="input" data-cy="sign-in__email" type="text" id="email" name="email" value="{% if formData.email %}{{ formData.email }}{% endif %}">
         {% if formErrors.email %}
-            <span data-cy="sign-in__wrongEmail" style="color: red;">{{ formErrors.email }}</span>
+            <span class="sign-in__wrongEmail" data-cy="sign-in__wrongEmail" style="color: red;">{{ formErrors.email }}</span>
         {% endif %}
         
-        <label for="password">Password:</label>
-        <input  data-cy="sign-in__password" type="password" id="password" name="password">
+        <label class="label" for="password">Password:</label>
+        <input class="input" data-cy="sign-in__password" type="password" id="password" name="password">
         {% if formErrors.password %}
-            <span data-cy="sign-in__wrongPassword" style="color: red;">{{ formErrors.password }}</span>
+            <span class="sign-in__wrongPassword" data-cy="sign-in__wrongPassword" style="color: red;">{{ formErrors.password }}</span>
         {% endif %}
 
-        <input data-cy="sign-in__btn" type="submit" value="SIGN IN">
-
-    
+        <input class="input" data-cy="sign-in__btn" type="submit" value="SIGN IN">
     </form>
+</div>
     {#<a href="{{ url_for("home") }}">Home</a>#}
 {% endblock %}

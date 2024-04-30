@@ -5,22 +5,22 @@
 {% endblock %}
 
 {% block content %}
-
-    <form data-cy="sign-up" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8">
-        <label for="email">Email:</label>
-        <input data-cy="sign-up__email" type="text" id="email" name="email" value="{% if formData.email %}{{ formData.email }}{% endif %}">
+<div class="main_container">
+    <form class="secondary_container" data-cy="sign-up" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8">
+        <label class="label" for="email">Email:</label>
+        <input class="input" data-cy="sign-up__email" type="text" id="email" name="email" value="{% if formData.email %}{{ formData.email }}{% endif %}">
         {% if formErrors.email %}
-            <span data-cy="sign-up__wrongEmail" style="color: red;">{{ formErrors.email }}</span>
+            <span class="sign-up__wrongEmail" data-cy="sign-up__wrongEmail" style="color: red;">{{ formErrors.email }}</span>
         {% endif %}
         
-        <label for="password">Password:</label>
-        <input data-cy="sign-up__password" type="password" id="password" name="password">
+        <label class="label" for="password">Password:</label>
+        <input class="input" data-cy="sign-up__password" type="password" id="password" name="password">
         {% if formErrors.password %}
-            <span data-cy="sign-up__wrongPassword" style="color: red;">{{ formErrors.password }}</span>
+            <span class="sign-up__wrongPassword" data-cy="sign-up__wrongPassword" style="color: red;">{{ formErrors.password }}</span>
         {% endif %}
 
-        <label for="Repeat-password">Password:</label>
-        <input data-cy="sign-up__repeatPassword" type="password" id="repeatPassword" name="repeatPassword">
+        <label class="label" for="Repeat-password">Password:</label>
+        <input class="input" data-cy="sign-up__repeatPassword" type="password" id="repeatPassword" name="repeatPassword">
         {% if formErrors.repeatPassword %}
             <span style="color: red;">{{ formErrors.repeatPassword }}</span>
         {% endif %}
@@ -29,8 +29,8 @@
             <span style="color: red;">{{ exception }}</span>
         {% endif %}
 
-        <input data-cy="sign-up__btn" type="submit" value="SIGN UP">
-
+        <input class="input" data-cy="sign-up__btn" type="submit" value="SIGN UP">
     </form>
+</div>
     {#<a href="{{ url_for("home") }}">Home</a>#}
 {% endblock %}

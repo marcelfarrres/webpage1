@@ -59,11 +59,14 @@ final class ProfileController
             $this->userRepository->updateUserUsername($_SESSION['email'], $data['username'] );
         }
 
-        if (isset($files['profile-picture']) && $files['profile-picture']->getError() === UPLOAD_ERR_OK) {
-            //TODO how to persist the image
-        } else {
-            $errors['profile_picture'] = 'Profile picture upload error';
+        if (isset($files['profile-picture'])){
+            if ( $files['profile-picture']->getError() === UPLOAD_ERR_OK) {
+                //TODO how to persist the image
+            } else {
+                $errors['profile_picture'] = 'Profile picture upload error';
+            }
         }
+        
 
         // If there are errors, redirect back to profile page with errors
         if (!empty($errors)) {

@@ -3,23 +3,24 @@
 {% block title %}Profile page{% endblock %}
 
 {% block content %}
-    <form data-cy="profile" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8"">
-        <div>
-            <label for="email">Email:</label>
-            <input data-cy="profile__email" type="email" id="email" name="email" value="{{ user.email }}" disabled>
+<div class="main_container">
+    <form class="secondary_container" data-cy="profile" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8"">
+        <div class="form-group">
+            <label class="label" for="email">Email:</label>
+            <input class="input" data-cy="profile__email" type="email" id="email" name="email" value="{{ user.email }}" disabled>
         </div>
        
-        <div>
-            <label for="username">Username:</label>
-            <input data-cy="profile__username" type="text" id="username" name="username" value="{{ user.username }}">
+        <div class="form-group">
+            <label class="label" for="username">Username:</label>
+            <input class="input" data-cy="profile__username" type="text" id="username" name="username" value="{{ user.username }}">
             {% if errors.username %}
                 <p class="error">{{ errors.username }}</p>
             {% endif %}
         </div>
        
-        <div>
-            <label for="profile-picture">Profile Picture:</label>
-            <input data-cy="profile__picture" type="file" id="profile-picture" name="profile-picture" accept="image/png, image/jpeg, image/gif, image/svg+xml">
+        <div class="form-group">
+            <label class="label" for="profile-picture">Profile Picture:</label>
+            <input class="input" data-cy="profile__picture" type="file" id="profile-picture" name="profile-picture" accept="image/png, image/jpeg, image/gif, image/svg+xml">
             {% if errors.profile_picture %}
                 <p class="error">{{ errors.profile_picture }}</p>
             {% endif %}
@@ -29,6 +30,7 @@
                 <img src="/placeholder.jpg" alt="Placeholder">
             {% endif %}
         </div>
-        <button data-cy="profile__btn" type="submit">Update Profile</button>
+        <button class="input" data-cy="profile__btn" type="submit">Update Profile</button>
     </form>
+</div>
 {% endblock %}

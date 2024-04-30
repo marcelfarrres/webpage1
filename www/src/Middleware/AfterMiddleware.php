@@ -14,7 +14,7 @@ final class AfterMiddleware
     public function __invoke(Request $request, RequestHandler $next): Response
     {
         $response = $next->handle($request);
-        $response->getBody()->write('AFTER');
+        
         
         return $response;
     }

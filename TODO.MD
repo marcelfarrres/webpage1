@@ -6,12 +6,16 @@
     - [x] Sign-in (Marcel)
 
 - [ ] Middleware
-    - [ ] Profile and ... cannot be acccessed by unisgned Users
+    - [ ] MiddlewareAuthentification: Profile and ... cannot be acccessed by unisgned Users
+
+- [ ] CSS
+    - [x] Create a general CSS for all views
+    - [ ] button class and map all buttons views 
 
 - [ ] Private Pages
     - [ ] Profile
        |---[x] Main Structure and modifing the Database (Marcel)
-       |---[ ] ProfileController: handle Image Error
+       |---[x] ProfileController: handle Image Error
        |---[ ] ProfileController: check if username is unique
        |---[ ] ProfileController: how to persist the image
     
