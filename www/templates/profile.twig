@@ -3,7 +3,7 @@
 {% block title %}Profile page{% endblock %}
 
 {% block content %}
-    <form data-cy="profile" action="/profile" method="post" enctype="multipart/form-data">
+    <form data-cy="profile" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8"">
         <div>
             <label for="email">Email:</label>
             <input data-cy="profile__email" type="email" id="email" name="email" value="{{ user.email }}" disabled>

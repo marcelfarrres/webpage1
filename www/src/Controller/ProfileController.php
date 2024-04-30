@@ -8,6 +8,8 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Flash\Messages;
 use Slim\Views\Twig;
+use Slim\Routing\RouteContext;
+
 
 use PWP\Model\UserRepository;
 
@@ -27,43 +29,64 @@ final class ProfileController
     public function showProfile(Request $request, Response $response): Response
     {
         // Assuming you have authenticated the user and retrieved their details
-        $userEmail = $_SESSION['email'];
-        $user = $this->userRepository->getUserbyEmail($userEmail);
+        
+        $user = $this->userRepository->getUserbyEmail( $_SESSION['email']);
+        $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
-        return $this->twig->render($response, 'profile.twig', ['user' => $user]);
+        return $this->twig->render($response, 'profile.twig', [
+            'user' => $user,
+            'formAction' => $routeParser->urlFor("profile"),
+            'formMethod' => "POST"
+        
+        ]);
     }
 
     public function updateProfile(Request $request, Response $response): Response
     {
         $data = $request->getParsedBody();
         $files = $request->getUploadedFiles();
+        
+        $user = $this->userRepository->getUserbyEmail($_SESSION['email']);
 
         // Validate and process form data...
 
-        // Example validation:
+        
         $errors = [];
         if (empty($data['username'])) {
             $errors['username'] = 'Username is required';
         } else {
-            // Check if username is unique (you need to implement this logic)
+            // TODO check if username is unique 
+            $this->userRepository->updateUserUsername($_SESSION['email'], $data['username'] );
         }
 
-        if ($files['profile-picture']->getError() === UPLOAD_ERR_OK) {
-            // Validate profile picture
+        if (isset($files['profile-picture']) && $files['profile-picture']->getError() === UPLOAD_ERR_OK) {
+            //TODO how to persist the image
         } else {
             $errors['profile_picture'] = 'Profile picture upload error';
         }
 
         // If there are errors, redirect back to profile page with errors
         if (!empty($errors)) {
-            $this->flash->addMessage('errors', $errors);
-            return $response->withRedirect('/profile');
+            
+            
+            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+
+            return $this->twig->render($response, 'profile.twig', [
+                'formErrors' => $errors,
+                'user' => $user,
+                'formAction' => $routeParser->urlFor("profile"),
+                'formMethod' => "POST"
+            ]);
+           
+        }else{
+            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+            
+            return $this->twig->render($response, 'home.twig', []);
+
         }
 
-        // If everything is valid, update user profile and redirect to profile page
-        // Update user's username and profile picture in database
+        
 
-        // Redirect to profile page
-        return $response->withRedirect('/profile');
+        
     }
 }

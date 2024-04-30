@@ -5,10 +5,15 @@
     - [x] Sign-up (Marcel)
     - [x] Sign-in (Marcel)
 
+- [ ] Middleware
+    - [ ] Profile and ... cannot be acccessed by unisgned Users
+
 - [ ] Private Pages
-    - [ ] Profile: Create a function in UserRepository for retrieving all info from an user,
-                        then create a $user and passit to the twig, also add the routing for 
-                        /profile GET and for /profile PUT, the first one for show the twig Profile and the second one for updating the User info.
+    - [ ] Profile
+       |---[x] Main Structure and modifing the Database (Marcel)
+       |---[ ] ProfileController: handle Image Error
+       |---[ ] ProfileController: check if username is unique
+       |---[ ] ProfileController: how to persist the image
     
     - [ ] Book Catalogue
     - [ ] Book Details

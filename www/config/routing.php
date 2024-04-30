@@ -29,3 +29,6 @@ $app->get('/sign-in', SignInController::class . ':showForm');
 $app->post('/sign-in', SignInController::class . ':handleFormSubmission')->setName('sign-in');
 
 $app->get('/profile', ProfileController::class . ':showProfile')->setName('profile');
+
+$app->post('/profile', ProfileController::class . ':updateProfile');
+
