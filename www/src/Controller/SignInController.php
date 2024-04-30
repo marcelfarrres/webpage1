@@ -26,16 +26,12 @@ final class SignInController
     {
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
        
-        $flag  = $_SESSION['fromNews'] ?? false;
-
-        if ($flag) {
-            unset($_SESSION['fromNews']);
-        }
+        
 
         return $this->twig->render($response, 'sign-in.twig', [
             'formAction' => $routeParser->urlFor("sign-in"),
-            'formMethod' => "POST",
-            'fromNews2' => $flag,
+            'formMethod' => "POST"
+            
             
 
             

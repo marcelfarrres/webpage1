@@ -8,7 +8,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use Slim\Flash\Messages;
 use Slim\Views\Twig;
-use PWP\Model\User; // Import User model
+
 use PWP\Model\UserRepository;
 
 final class ProfileController
@@ -27,8 +27,8 @@ final class ProfileController
     public function showProfile(Request $request, Response $response): Response
     {
         // Assuming you have authenticated the user and retrieved their details
-        $userId = $request->getAttribute('user_id'); // Adjust this according to your authentication logic
-        $user = $this->userRepository->findById($userId);
+        $userEmail = $_SESSION['email'];
+        $user = $this->userRepository->getUserbyEmail($userEmail);
 
         return $this->twig->render($response, 'profile.twig', ['user' => $user]);
     }

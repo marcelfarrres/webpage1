@@ -2,7 +2,9 @@
 
 declare(strict_types=1);
 
+
 namespace PWP\Model;
+use PWP\Model\User;
 
 interface UserRepository
 {
@@ -12,5 +14,8 @@ interface UserRepository
 
     public function checkIfUserExistsAndPasswordMatches(string $email, string $password): bool;
 
-    public function getNum(string $email): int;
+    public function getUserbyEmail(string $email): User;
+
+    public function updateUserUsername(string $email, string $newUsername): bool;
+    public function updateProfileImage(string $email, string $newProfilePicture): bool;
 }

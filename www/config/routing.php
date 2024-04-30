@@ -9,6 +9,7 @@ use PWP\Controller\FlashController;
 use PWP\Controller\CreateUserController;
 use PWP\Controller\SignUpController;
 use PWP\Controller\SignInController;
+use PWP\Controller\ProfileController;
 
 
 $app->add(SessionMiddleware::class);
@@ -26,3 +27,5 @@ $app->post('/sign-up', SignUpController::class . ':handleFormSubmission')->setNa
 $app->get('/sign-in', SignInController::class . ':showForm');
 
 $app->post('/sign-in', SignInController::class . ':handleFormSubmission')->setName('sign-in');
+
+$app->get('/profile', ProfileController::class . ':showProfile')->setName('profile');

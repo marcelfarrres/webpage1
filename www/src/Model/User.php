@@ -19,13 +19,13 @@ final class User
     public function __construct(
         string $email,
         string $password,
-        
         DateTime $created_at,
         DateTime $updated_at
     ) {
         $this->email = $email;
         $this->password = $password;
-        
+        $this->username = '';
+        $this->profile_picture = '';
         $this->created_at = $created_at;
         $this->updated_at = $updated_at;
     }

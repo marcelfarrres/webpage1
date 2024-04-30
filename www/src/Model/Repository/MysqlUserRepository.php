@@ -7,6 +7,7 @@ namespace PWP\Model\Repository;
 use PDO;
 use PWP\Model\User;
 use PWP\Model\UserRepository;
+use DateTime;
 
 final class MysqlUserRepository implements UserRepository
 {
@@ -87,20 +88,56 @@ final class MysqlUserRepository implements UserRepository
     }
 }
 
-public function getNum(string $email): int
+public function getUserbyEmail(string $email): User
 {
     $query = <<<'QUERY'
-    SELECT numBitcoins FROM users WHERE email = :email
+    SELECT * FROM users WHERE email = :email
     QUERY;
 
     $statement = $this->database->prepare($query);
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
     $statement->execute();
 
-    
-    return $statement->fetchColumn();
-    
+    $data = $statement->fetch(PDO::FETCH_ASSOC);
+
+    // Create new user
+    $user = new User(
+        $data['email'],
+        '',
+        new DateTime($data['created_at']),
+        new DateTime($data['updated_at'])
+    );
+
+    return $user;
 }
+
+public function updateUserUsername(string $email, string $newUsername): bool
+{
+    $query = <<<'QUERY'
+    UPDATE users SET username = :username WHERE email = :email
+    QUERY;
+
+    $statement = $this->database->prepare($query);
+    $statement->bindParam(':username', $newUsername, PDO::PARAM_STR);
+    $statement->bindParam(':email', $email, PDO::PARAM_STR);
+
+    return $statement->execute();
+}
+
+public function updateProfileImage(string $email, string $newProfilePicture): bool
+{
+    $query = <<<'QUERY'
+    UPDATE users SET profile_picture = :profile_picture WHERE email = :email
+    QUERY;
+
+    $statement = $this->database->prepare($query);
+    $statement->bindParam(':profile_picture', $newProfilePicture, PDO::PARAM_STR);
+    $statement->bindParam(':email', $email, PDO::PARAM_STR);
+
+    return $statement->execute();
+}
+
+
 
 
 }
