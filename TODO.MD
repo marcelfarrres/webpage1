@@ -10,9 +10,16 @@
        |---[x] General Structure working.
        |---[ ] How can I create a response in other way.
 
+    - [ ] FirstTimeMiddleware: When an user accesses any private page without having set their   username, they are redirected to the profile page with a flash message
+
 - [ ] CSS
     - [x] Create a general CSS for all views
     - [x] button class and map all buttons views 
+
+- [ ] EXTERNAL APIS-Repositories //TODO: How to distribute the api calls and the Database calls
+    - [x] UserRepository
+    - [ ] BookRepository
+
 
 - [ ] Private Pages
     - [ ] Profile (Marcel)
@@ -22,7 +29,10 @@
        |---[x] ProfileController: check if username is unique
        |---[ ] ProfileController: how to persist the image
     
-    - [ ] Book Catalogue
+    - [ ] Catalogue (Marcel)
+       |---[x] Main Structure and routing
+       |---[ ] Forms distribution
+
     - [ ] Book Details
     - [ ] Book Ratings and Reviews
     - [ ] Discussion Forums

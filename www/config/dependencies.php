@@ -9,6 +9,10 @@ use Slim\Flash\Messages;
 use PWP\Model\Repository\PDOSingleton;
 use PWP\Model\UserRepository;
 use PWP\Model\Repository\MysqlUserRepository;
+use PWP\Model\Repository\GuzzleBookRepository;
+use PWP\Model\BookRepository;
+
+
 
 
 $container = new Container();
@@ -37,4 +41,8 @@ $container->set(PDO::class, function () {
 
 $container->set(UserRepository::class, function (ContainerInterface $c) {
     return $c->get(MysqlUserRepository::class);
+});
+
+$container->set(BookRepository::class, function (ContainerInterface $c) {
+    return $c->get(GuzzleBookRepository::class);
 });

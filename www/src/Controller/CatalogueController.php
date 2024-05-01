@@ -6,42 +6,43 @@ namespace PWP\Controller;
 
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
+use PWP\Model\Book;
 use Slim\Flash\Messages;
 use Slim\Views\Twig;
 use Slim\Routing\RouteContext;
+use PWP\Model\BookRepository;
 
-
-use PWP\Model\UserRepository;
-
-final class ProfileController
+final class CatalogueController
 {
     private Twig $twig;
     private Messages $flash;
-    private UserRepository $userRepository; 
+    private BookRepository $bookRepository; 
 
-    public function __construct(Twig $twig, Messages $flash, UserRepository $userRepository)
+    public function __construct(Twig $twig, Messages $flash, BookRepository $bookRepository)
     {
         $this->twig = $twig;
         $this->flash = $flash;
-        $this->userRepository = $userRepository;
+        $this->bookRepository = $bookRepository;
     }
 
-    public function showProfile(Request $request, Response $response): Response
+    public function showBooks(Request $request, Response $response): Response
     {
         
+        $books = [];
+        //TODO: MysqlBookRepository instead of mocking the books
+        array_push($books, new Book('title1', 'author1', ' ', 0, ' '),new Book('title2', 'author2', ' ', 1, ' '));
         
-        $user = $this->userRepository->getUserbyEmail( $_SESSION['email']);
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
-        return $this->twig->render($response, 'profile.twig', [
-            'user' => $user,
-            'formAction' => $routeParser->urlFor("profile"),
+        return $this->twig->render($response, 'catalogue.twig', [
+            'books' => $books,
+            'formAction' => $routeParser->urlFor("catalogue"),
             'formMethod' => "POST"
         
         ]);
     }
 
-    public function updateProfile(Request $request, Response $response): Response
+    public function update(Request $request, Response $response): Response
     {
         $data = $request->getParsedBody();
         $files = $request->getUploadedFiles();

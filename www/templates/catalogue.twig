@@ -1,0 +1,42 @@
+{% extends "base.twig" %}
+
+{% block title %}Catalogue{% endblock %}
+
+{% block content %}
+<div class="main_container">
+    <h2>Available Books</h2>
+    <ul>
+    {% if books is not empty %}
+        {% for book in books %}
+            <li><a class="label">{{ book.title }}</a></li>
+            {% endfor %}
+    {% endif %}
+    </ul>
+   
+    <h2>Add a New Book</h2>
+    <div class="form_container">
+        <form class="book_form" action="{{ formAction }}"  method="{{ formMethod }}" accept-charset="utf-8">
+            <label for="full_form_title">Title:</label>
+            <input type="text" id="full_form_title" name="title" required>
+            <label for="full_form_author">Author:</label>
+            <input type="text" id="full_form_author" name="author" required>
+            <label for="full_form_description">Description:</label>
+            <textarea id="full_form_description" name="description" rows="4" required></textarea>
+            <label for="full_form_pages">Number of Pages:</label>
+            <input type="number" id="full_form_pages" name="numberOfPages" required>
+            <label for="full_form_cover">Cover Image URL:</label>
+            <input type="url" id="full_form_cover" name="coverImageUrl">
+            <button type="submit">Create Book</button>
+        </form>
+    </div>
+
+    <h2>Import Book by ISBN</h2>
+    <div class="form_container">
+        <form class="isbn_form"action="{{ formAction }}"  method="{{ formMethod }}"  accept-charset="utf-8">
+            <label for="isbn">ISBN:</label>
+            <input type="text" id="isbn" name="isbn" required>
+            <button type="submit">Import Book</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

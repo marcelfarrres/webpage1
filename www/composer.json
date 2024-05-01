@@ -20,7 +20,8 @@
     "php-di/slim-bridge": "^3.4",
     "slim/twig-view": "^3.3",
     "ext-json": "*",
-    "slim/flash": "^0.4.0"
+    "slim/flash": "^0.4.0",
+    "guzzlehttp/guzzle": "^7.0"
   }
 
 }

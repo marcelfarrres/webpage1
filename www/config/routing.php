@@ -10,6 +10,7 @@ use PWP\Controller\CreateUserController;
 use PWP\Controller\SignUpController;
 use PWP\Controller\SignInController;
 use PWP\Controller\ProfileController;
+use PWP\Controller\CatalogueController;
 
 
 $app->add(SessionMiddleware::class);
@@ -29,6 +30,9 @@ $app->get('/sign-in', SignInController::class . ':showForm');
 $app->post('/sign-in', SignInController::class . ':handleFormSubmission')->setName('sign-in');
 
 
-//Authentication Middleware:
+//Needs Authentication Middleware:
 $app->get('/profile', ProfileController::class . ':showProfile')->setName('profile')->add(AuthenticationMiddleware::class);
 $app->post('/profile', ProfileController::class . ':updateProfile');
+
+$app->get('/catalogue', CatalogueController::class . ':showBooks')->setName('catalogue')->add(AuthenticationMiddleware::class);
+$app->post('/catalogue', CatalogueController::class . ':updateProfile');
