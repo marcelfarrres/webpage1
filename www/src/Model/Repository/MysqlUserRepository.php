@@ -107,6 +107,8 @@ public function getUserbyEmail(string $email): User
         new DateTime($data['created_at']),
         new DateTime($data['updated_at'])
     );
+    $user->setUsername($data['username']);
+    //TODO add setProfile_picture() when all problems related to image resolved
 
     return $user;
 }
@@ -135,6 +137,22 @@ public function updateProfileImage(string $email, string $newProfilePicture): bo
     $statement->bindParam(':email', $email, PDO::PARAM_STR);
 
     return $statement->execute();
+}
+
+
+public function isUsernameUnique(string $username): bool
+{
+    $query = <<<'QUERY'
+    SELECT COUNT(*) AS count FROM users WHERE username = :username
+    QUERY;
+
+    $statement = $this->database->prepare($query);
+    $statement->bindParam(':username', $username, PDO::PARAM_STR);
+    $statement->execute();
+
+    $result = $statement->fetch(PDO::FETCH_ASSOC);
+    
+    return $result['count'] === 0;
 }
 
 

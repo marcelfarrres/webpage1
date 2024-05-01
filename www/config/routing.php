@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 use PWP\Controller\HomeController;
-use PWP\Middleware\AfterMiddleware;
+use PWP\Middleware\AuthenticationMiddleware;
 use PWP\Middleware\SessionMiddleware;
 use PWP\Controller\FlashController;
 use PWP\Controller\CreateUserController;
@@ -14,7 +14,7 @@ use PWP\Controller\ProfileController;
 
 $app->add(SessionMiddleware::class);
 $app->get('/', HomeController::class . ':apply')->setName('home');
-$app->add(AfterMiddleware::class);
+
 
 $app->get('/flash', FlashController::class . ':addMessage')->setName('flash');
 
@@ -28,7 +28,7 @@ $app->get('/sign-in', SignInController::class . ':showForm');
 
 $app->post('/sign-in', SignInController::class . ':handleFormSubmission')->setName('sign-in');
 
-$app->get('/profile', ProfileController::class . ':showProfile')->setName('profile');
 
+//Authentication Middleware:
+$app->get('/profile', ProfileController::class . ':showProfile')->setName('profile')->add(AuthenticationMiddleware::class);
 $app->post('/profile', ProfileController::class . ':updateProfile');
-

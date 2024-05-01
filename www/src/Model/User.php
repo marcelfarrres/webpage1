@@ -46,10 +46,20 @@ final class User
     {
         return $this->username;
     }
+
+    public function setUsername($username): void
+    {
+        $this->username = $username;
+    }
     
     public function profile_picture(): string
     {
         return $this->profile_picture;
+    }
+
+    public function setProfile_picture($profile_picture): void
+    {
+        $this->profile_picture = $profile_picture;
     }
 
     public function created_at(): DateTime

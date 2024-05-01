@@ -13,16 +13,16 @@
         <div class="form-group">
             <label class="label" for="username">Username:</label>
             <input class="input" data-cy="profile__username" type="text" id="username" name="username" value="{{ user.username }}">
-            {% if errors.username %}
-                <p class="error">{{ errors.username }}</p>
+            {% if formErrors.username %}
+                <p class="errorMessage">{{ formErrors.username }}</p>
             {% endif %}
         </div>
        
         <div class="form-group">
             <label class="label" for="profile-picture">Profile Picture:</label>
             <input class="input" data-cy="profile__picture" type="file" id="profile-picture" name="profile-picture" accept="image/png, image/jpeg, image/gif, image/svg+xml">
-            {% if errors.profile_picture %}
-                <p class="error">{{ errors.profile_picture }}</p>
+            {% if formErrors.profile_picture %}
+                <p class="errorMessage">{{ formErrors.profile_picture }}</p>
             {% endif %}
             {% if user.profile_picture %}
                 <img src="/uploads/{{ user.profile_picture }}" alt="Profile Picture">
@@ -30,7 +30,7 @@
                 <img src="/placeholder.jpg" alt="Placeholder">
             {% endif %}
         </div>
-        <button class="input" data-cy="profile__btn" type="submit">Update Profile</button>
+        <button class="button" data-cy="profile__btn" type="submit">Update Profile</button>
     </form>
 </div>
 {% endblock %}

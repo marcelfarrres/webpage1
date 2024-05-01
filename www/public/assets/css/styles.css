@@ -38,8 +38,7 @@
 }
 
 /* Home page */
-.home__sign-in,
-.home__sign-up {
+.button{
   display: inline-block;
   padding: 10px 20px;
   margin-right: 10px;
@@ -52,14 +51,12 @@
   transition: transform 0.3s ease;
 }
 
-.home__sign-in:hover,
-.home__sign-up:hover {
+.button:hover {
   background-color: #0056b3;
   transform: scale(1.1);
 }
 
-.home__sign-in:active,
-.home__sign-up:active {
+.button:active {
   animation: explosion 0.3s;
 }
 
@@ -70,4 +67,25 @@
   100% {
     transform: scale(2);
   }
+}
+
+
+.errorMessage {
+  color: red;
+  font-size: 14px;
+  font-weight: bold;
+  animation: blinkAnimation 2s linear forwards;
+}
+
+.warningMessage{
+  color: orange;
+  font-size: 14px;
+  font-weight: bold;
+  animation: blinkAnimation 2s linear forwards;
+}
+
+@keyframes blinkAnimation {
+  0%, 25%, 50%, 75%, 100% { opacity: 1; }
+  12.5%, 37.5%, 62.5%, 87.5% { opacity: 0; }
+  
 }

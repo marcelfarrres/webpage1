@@ -48,14 +48,13 @@ final class ProfileController
         
         $user = $this->userRepository->getUserbyEmail($_SESSION['email']);
 
-        // Validate and process form data...
-
-        
         $errors = [];
         if (empty($data['username'])) {
             $errors['username'] = 'Username is required';
-        } else {
-            // TODO check if username is unique 
+        } else if(!$this->userRepository->isUsernameUnique($data['username'])){
+            $errors['username'] = 'Username already in use :(';
+           
+        } else{
             $this->userRepository->updateUserUsername($_SESSION['email'], $data['username'] );
         }
 
@@ -67,9 +66,11 @@ final class ProfileController
             }
         }
         
-
-        // If there are errors, redirect back to profile page with errors
+        //Get the user Updated:
+        $user = $this->userRepository->getUserbyEmail($_SESSION['email']);
+        
         if (!empty($errors)) {
+           
             
             
             $routeParser = RouteContext::fromRequest($request)->getRouteParser();
@@ -82,9 +83,11 @@ final class ProfileController
             ]);
            
         }else{
+            //$routeParser = RouteContext::fromRequest($request)->getRouteParser();
             $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+            return $response->withHeader('Location',  $routeParser->urlFor("home"))->withStatus(302);
             
-            return $this->twig->render($response, 'home.twig', []);
+            //return $this->twig->render($response, 'home.twig', []);
 
         }
 

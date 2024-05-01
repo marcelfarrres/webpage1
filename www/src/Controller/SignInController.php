@@ -6,6 +6,7 @@ namespace PWP\Controller;
 
 use Slim\Routing\RouteContext;
 use Slim\Views\Twig;
+use Slim\Flash\Messages;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Psr\Http\Message\ResponseInterface as Response;
 use PWP\Model\User;
@@ -19,21 +20,23 @@ final class SignInController
 {
     public function __construct(
         private Twig $twig,
-        private UserRepository $userRepository
+        private UserRepository $userRepository,
+        private Messages $flash
     ) {}
 
     public function showForm(Request $request, Response $response): Response
     {
-        $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-       
-        
 
+        $messages = $this->flash->getMessages();
+        $AuthenticationMiddlewareMessages = $messages['AuthenticationMiddlewareMessage'] ?? [];
+
+        $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+
+       
         return $this->twig->render($response, 'sign-in.twig', [
             'formAction' => $routeParser->urlFor("sign-in"),
-            'formMethod' => "POST"
-            
-            
-
+            'formMethod' => "POST",
+            'AuthenticationMiddlewareMessage' => $AuthenticationMiddlewareMessages[0]
             
         ]);
     }

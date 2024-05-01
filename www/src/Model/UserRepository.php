@@ -17,5 +17,8 @@ interface UserRepository
     public function getUserbyEmail(string $email): User;
 
     public function updateUserUsername(string $email, string $newUsername): bool;
+
     public function updateProfileImage(string $email, string $newProfilePicture): bool;
+
+    public function isUsernameUnique(string $username): bool;
 }

@@ -6,17 +6,20 @@
     - [x] Sign-in (Marcel)
 
 - [ ] Middleware
-    - [ ] MiddlewareAuthentification: Profile and ... cannot be acccessed by unisgned Users
+    - [ ] AuthenticationMiddleware: Profile and ... cannot be acccessed by unisgned Users
+       |---[x] General Structure working.
+       |---[ ] How can I create a response in other way.
 
 - [ ] CSS
     - [x] Create a general CSS for all views
-    - [ ] button class and map all buttons views 
+    - [x] button class and map all buttons views 
 
 - [ ] Private Pages
-    - [ ] Profile
-       |---[x] Main Structure and modifing the Database (Marcel)
+    - [ ] Profile (Marcel)
+       |---[x] Main Structure and modifing the Database 
        |---[x] ProfileController: handle Image Error
-       |---[ ] ProfileController: check if username is unique
+       |---[x] ProfileController - Profile.twig: Username not showing after updating. 
+       |---[x] ProfileController: check if username is unique
        |---[ ] ProfileController: how to persist the image
     
     - [ ] Book Catalogue

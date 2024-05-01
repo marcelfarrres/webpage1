@@ -6,6 +6,11 @@
 
 {% block content %}
 <div class="main_container">
+
+    {% if AuthenticationMiddlewareMessage %}
+        <li class="warningMessage">{{ AuthenticationMiddlewareMessage }}</li>
+    {% endif %}
+    
     <span class="sign-in__message" data-cy="sign-in__message">{% if fromNews %}You must be logged in to access the news page.{% endif %}</span>
     <form class="secondary_container" data-cy="sign-in" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8">
         <label class="label" for="email">Email:</label>
@@ -20,7 +25,7 @@
             <span class="sign-in__wrongPassword" data-cy="sign-in__wrongPassword" style="color: red;">{{ formErrors.password }}</span>
         {% endif %}
 
-        <input class="input" data-cy="sign-in__btn" type="submit" value="SIGN IN">
+        <input class="button" data-cy="sign-in__btn" type="submit" value="SIGN IN">
     </form>
 </div>
     {#<a href="{{ url_for("home") }}">Home</a>#}
