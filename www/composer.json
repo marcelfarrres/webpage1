@@ -21,7 +21,7 @@
     "slim/twig-view": "^3.3",
     "ext-json": "*",
     "slim/flash": "^0.4.0",
-    "dflydev/fig-cookies": "^3.1"
+    "guzzlehttp/guzzle": "^7.0"
   }
 
 }
