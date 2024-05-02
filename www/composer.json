@@ -19,7 +19,9 @@
     "slim/psr7": "^1.6",
     "php-di/slim-bridge": "^3.4",
     "slim/twig-view": "^3.3",
-    "ext-json": "*"
+    "ext-json": "*",
+    "slim/flash": "^0.4.0",
+    "dflydev/fig-cookies": "^3.1"
   }
 
 }
