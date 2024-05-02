@@ -6,7 +6,8 @@ namespace PWP\Middleware;
 
 use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
 use Psr\Http\Message\ServerRequestInterface as Request;
-use Psr\Http\Message\ResponseInterface as Response;
+use Psr\Http\Message\ResponseInterface;
+use Slim\Psr7\Response;
 
 
 use Slim\Routing\RouteContext;
@@ -21,7 +22,7 @@ final class AuthenticationMiddleware
         private UserRepository $userRepository
     ) {}
 
-    public function __invoke(Request $request, RequestHandler $next): Response
+    public function __invoke(Request $request, RequestHandler $next): ResponseInterface
     {
         // Check if the user is not signed in
         if (!isset($_SESSION['email']) || !$this->userRepository->checkIfUserExists($_SESSION['email'])) {
@@ -29,7 +30,8 @@ final class AuthenticationMiddleware
             $this->flash->addMessage('AuthenticationMiddlewareMessage', 'User not signed in!');
             $routeParser = RouteContext::fromRequest($request)->getRouteParser();
             //TODO: How can I create a response in other way.
-            return (new \Slim\Psr7\Response())->withHeader('Location', $routeParser->urlFor("sign-in"))->withStatus(302);
+            //return $next->handle($request)->withHeader('Location', $routeParser->urlFor("sign-in"))->withStatus(302);
+            return (new Response())->withHeader('Location', $routeParser->urlFor("sign-in"))->withStatus(302);
         }
 
         // User is signed in, proceed with the request
