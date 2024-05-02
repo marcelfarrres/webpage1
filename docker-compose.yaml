@@ -9,7 +9,12 @@ services:
     restart: unless-stopped
     working_dir: /var/www/
     environment:
-      - PHP_IDE_CONFIG=serverName=0.0.0.0:${XDEBUG_PORT}
+      PHP_IDE_CONFIG: serverName=0.0.0.0:${XDEBUG_PORT}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
     extra_hosts:
       - "host.docker.internal:host-gateway"
     volumes:

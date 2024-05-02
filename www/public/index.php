@@ -18,6 +18,7 @@ $app = AppFactory::create();
 $app->add(TwigMiddleware::createFromContainer($app));
 $app->addRoutingMiddleware();
 $app->addErrorMiddleware(true, false, false);
+$app->addBodyParsingMiddleware();
 
 require_once __DIR__ . '/../config/routing.php';
 
