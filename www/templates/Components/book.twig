@@ -16,7 +16,7 @@
                     <p><strong>Updated At:</strong> {{ book.updatedAt|date('Y-m-d H:i:s') }}</p>
                 </div>
                 <div class="show-details">
-                    <form action="{{ url_for('details', { 'id': book.title}) }}" method="{{ formMethodDetails }}">
+                    <form action="{{ url_for('details', { 'id': book.id}) }}" method="{{ formMethodDetails }}">
                         <button type="submit">Show Details</button>
                     </form>
 
