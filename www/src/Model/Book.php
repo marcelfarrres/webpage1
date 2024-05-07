@@ -8,6 +8,7 @@ use DateTime;
 
 final class Book
 {
+    private int $id;
     private string $title;
     private string $author;
     private string $description;
@@ -25,6 +26,7 @@ final class Book
         DateTime $createdAt,
         DateTime $updatedAt
     ) {
+        $this->id = 0;
         $this->title = $title;
         $this->author = $author;
         $this->description = $description;
@@ -102,5 +104,15 @@ final class Book
     public function setUpdatedAt(DateTime $updatedAt): void
     {
         $this->updatedAt = $updatedAt;
+    }
+
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    public function setId(int $id): void
+    {
+        $this->id = $id;
     }
 }

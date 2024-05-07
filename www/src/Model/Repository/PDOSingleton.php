@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace PWP\Model\Repository; 
 use PDO;
 
+
 final class PDOSingleton
 {
     private const CONNECTION_STRING = 'mysql:host=%s;port=%s;dbname=%s';
