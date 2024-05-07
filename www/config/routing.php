@@ -11,6 +11,7 @@ use PWP\Controller\SignUpController;
 use PWP\Controller\SignInController;
 use PWP\Controller\ProfileController;
 use PWP\Controller\CatalogueController;
+use PWP\Controller\DetailsController;
 
 
 $app->add(SessionMiddleware::class);
@@ -18,8 +19,6 @@ $app->get('/', HomeController::class . ':apply')->setName('home');
 
 
 $app->get('/flash', FlashController::class . ':addMessage')->setName('flash');
-
-$app->post('/user', CreateUserController::class . ':apply')->setName('create_user');
 
 $app->get('/sign-up', SignUpController::class . ':showForm');
 
@@ -34,5 +33,7 @@ $app->post('/sign-in', SignInController::class . ':handleFormSubmission')->setNa
 $app->get('/profile', ProfileController::class . ':showProfile')->setName('profile')->add(AuthenticationMiddleware::class);
 $app->post('/profile', ProfileController::class . ':updateProfile');
 
-$app->get('/catalogue', CatalogueController::class . ':showBooks')->setName('catalogue')->add(AuthenticationMiddleware::class);
-$app->post('/catalogue', CatalogueController::class . ':updateProfile');
+$app->get('/catalogue', CatalogueController::class . ':showBooks')->setName('catalogue');
+$app->post('/catalogue', CatalogueController::class . ':persistBook');
+
+$app->get('/details/{id}', DetailsController::class . ':showDetails')->setName('details');

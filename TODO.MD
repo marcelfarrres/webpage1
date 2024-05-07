@@ -19,6 +19,7 @@
 - [ ] EXTERNAL APIS-Repositories //TODO: How to distribute the api calls and the Database calls
     - [x] UserRepository
     - [ ] BookRepository
+    - [ ] GuzzleService
 
 
 - [ ] Private Pages
@@ -31,9 +32,13 @@
     
     - [ ] Catalogue (Marcel)
        |---[x] Main Structure and routing
+       |---[x] Create and connect the BookRepository
        |---[ ] Forms distribution
+       |---[ ] Implement the BookService created
 
     - [ ] Book Details
+       |---[ ] Hacer lo de /catalogue/id
+       
     - [ ] Book Ratings and Reviews
     - [ ] Discussion Forums
     - [ ] Forum Posts

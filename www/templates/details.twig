@@ -1,0 +1,38 @@
+{% extends "base.twig" %}
+
+
+{% block title %}Book Details{% endblock %}
+
+
+
+{% block head %}
+    <link rel="stylesheet" href="/assets/css/details.css"/>
+{% endblock %}
+
+{% block content %}
+<div class="books-container">
+    <div class="books-wrapper">
+        
+            <div class="book">
+                <div class="book-info">
+                    {% if book.coverImage %}
+                        <div class="book-image">
+                            <img src="{{ book.coverImage }}" alt="Cover Image">
+                        </div>
+                    {% endif %}
+                    <div class="book-details">
+                        <h2>{{ book.title }}</h2>
+                        <p><strong>Author:</strong> {{ book.author }}</p>
+                        <p><strong>Description:</strong> {{ book.description }}</p>
+                        <p><strong>Number of Pages:</strong> {{ book.pageNumber }}</p>
+                        <p><strong>Created At:</strong> {{ book.createdAt|date('Y-m-d H:i:s') }}</p>
+                        <p><strong>Updated At:</strong> {{ book.updatedAt|date('Y-m-d H:i:s') }}</p>
+                    </div>
+                </div>
+            </div>
+        
+    </div>
+</div>
+<div class="overlay"></div>
+
+{% endblock %}

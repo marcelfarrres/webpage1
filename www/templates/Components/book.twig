@@ -1,0 +1,27 @@
+<div class="books-container">
+    <div class="books-wrapper">
+        {% for book in books %}
+            <div class="book">
+                <div class="book_title">
+                    <h2>{{ book.title }}</h2>
+                    <p><strong>Author:</strong> {{ book.author }}</p>
+                </div>
+                <div class="book-popup">
+                    <p><strong>Description:</strong> {{ book.description }}</p>
+                    <p><strong>Number of Pages:</strong> {{ book.pageNumber }}</p>
+                    {% if book.coverImage %}
+                        <img src="{{ book.coverImage }}" alt="Cover Image">
+                    {% endif %}
+                    <p><strong>Created At:</strong> {{ book.createdAt|date('Y-m-d H:i:s') }}</p>
+                    <p><strong>Updated At:</strong> {{ book.updatedAt|date('Y-m-d H:i:s') }}</p>
+                </div>
+                <div class="show-details">
+                    <form action="{{ url_for('details', { 'id': book.title}) }}" method="{{ formMethodDetails }}">
+                        <button type="submit">Show Details</button>
+                    </form>
+
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>

@@ -1,8 +1,6 @@
-/* General styles for all views */
-
 /* Main container */
 .main_container {
-  max-width: 600px;
+  max-width: 100%; /* Adjusted to occupy full width */
   margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
@@ -38,7 +36,7 @@
 }
 
 /* Home page */
-.button{
+.button {
   display: inline-block;
   padding: 10px 20px;
   margin-right: 10px;
@@ -69,7 +67,6 @@
   }
 }
 
-
 .errorMessage {
   color: red;
   font-size: 14px;
@@ -77,7 +74,7 @@
   animation: blinkAnimation 2s linear forwards;
 }
 
-.warningMessage{
+.warningMessage {
   color: orange;
   font-size: 14px;
   font-weight: bold;
@@ -87,5 +84,4 @@
 @keyframes blinkAnimation {
   0%, 25%, 50%, 75%, 100% { opacity: 1; }
   12.5%, 37.5%, 62.5%, 87.5% { opacity: 0; }
-  
 }

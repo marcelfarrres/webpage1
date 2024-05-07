@@ -36,7 +36,8 @@ final class SignInController
         return $this->twig->render($response, 'sign-in.twig', [
             'formAction' => $routeParser->urlFor("sign-in"),
             'formMethod' => "POST",
-            'AuthenticationMiddlewareMessage' => $AuthenticationMiddlewareMessages[0]
+            'AuthenticationMiddlewareMessage' => !empty($AuthenticationMiddlewareMessages) ? $AuthenticationMiddlewareMessages[0] : null
+
             
         ]);
     }

@@ -9,19 +9,17 @@ use PWP\Model\Book;
 use PWP\Model\BookRepository;
 use DateTime;
 
-final class MysqlBookRepository //implements BookRepository
+final class MysqlBookRepository implements BookRepository
 {
     private const DATE_FORMAT = 'Y-m-d H:i:s';
 
     private PDO $database;
 
-    public function __construct(PDO $database)
-    {
+    public function __construct(PDO $database) {
         $this->database = $database;
     }
 
-    public function save(Book $book): void
-    {
+    public function save(Book $book): void {
         $query = <<<'QUERY'
         INSERT INTO books(title, author, description, page_number, cover_image, created_at, updated_at)
         VALUES(:title, :author, :description, :page_number, :cover_image, :created_at, :updated_at)
@@ -48,31 +46,95 @@ final class MysqlBookRepository //implements BookRepository
         $statement->execute();
     }
 
-    public function getBookByISBN($ISBN): Book
-    {
+
+    public function getAllBooks(): array {
+
+        $books = [];
         $query = <<<'QUERY'
-        SELECT * FROM books WHERE ISBN = :ISBN
+            SELECT * FROM books
         QUERY;
 
-        $statement = $this->database->prepare($query);
-        $statement->bindParam(':ISBN', $ISBN, PDO::PARAM_STR);
-        $statement->execute();
+        $statement = $this->database->query($query);
 
-        $data = $statement->fetch(PDO::FETCH_ASSOC);
+        
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
+            $createdAt = DateTime::createFromFormat(self::DATE_FORMAT, $row['created_at']);
+            $updatedAt = DateTime::createFromFormat(self::DATE_FORMAT, $row['updated_at']);
 
-        // Create new book
-        $book = new Book(
-            $data['title'],
-            $data['author'],
-            $data['description'],
-            $data['page_number'],
-            $data['cover_image'],
-            new DateTime($data['created_at']),
-            new DateTime($data['updated_at'])
+            $book = new Book(
+                $row['title'],
+                $row['author'],
+                $row['description'],
+                (int)$row['page_number'],
+                $row['cover_image'],
+                $createdAt,
+                $updatedAt
+            );
+
+            $books[] = $book;
+        }
+
+        return $books;
+}
+
+public function getBookById(int $id): Book {
+    $query = <<<'QUERY'
+        SELECT * FROM books WHERE id = :id
+    QUERY;
+
+    $statement = $this->database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_STR);
+    $statement->execute();
+
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+    if (!$row) {
+        return new Book(
+            '',
+            '',
+            '',
+            0,
+            '',
+            new DateTime(),
+            new DateTime()
         );
-
-        return $book;
     }
 
-    // Implement other methods as needed...
+    $createdAt = DateTime::createFromFormat(self::DATE_FORMAT, $row['created_at']);
+    $updatedAt = DateTime::createFromFormat(self::DATE_FORMAT, $row['updated_at']);
+
+    return new Book(
+        $row['title'],
+        $row['author'],
+        $row['description'],
+        (int)$row['page_number'],
+        $row['cover_image'],
+        $createdAt,
+        $updatedAt
+    );
+}
+
+public function getIdByTitle(string $title): int {
+    $query = <<<'QUERY'
+        SELECT id FROM books WHERE title = :title
+    QUERY;
+
+    $statement = $this->database->prepare($query);
+    $statement->bindParam(':title', $title, PDO::PARAM_STR);
+    $statement->execute();
+
+    $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+    if (!$row) {
+        return 0; // Book not found
+    }
+
+    return $row['id'];
+}
+
+
+
+    
+
+    
 }

@@ -276,7 +276,7 @@ forms:
       [/authors/{author-identifier}.json](https://openlibrary.org/authors/OL22161A.json).
     - Generate the Cover URL from the cover ID obtained in the first query. The format is described in the corresponding
       [documentation](https://openlibrary.org/dev/docs/api/covers) and matches the following
-      pattern: [https://covers.openlibrary.org/b/id/{cover-id}-L.jpg](https://covers.openlibrary.org/b/id/8545670-L.jpg)
+      pattern: [https://covers.openlibrary.org/b/id/{cover-id}-L.jpg](https://covers.openlibrary.org/b/id/8443294-L.jpg)
 
 It's your choice whether to leave the forms always visible or present them in a modal, tabs, etc. That being said, both
 forms must generate a POST request to the current endpoint, with the backend being in charge of distinguishing which

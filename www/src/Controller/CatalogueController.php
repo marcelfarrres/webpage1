@@ -11,6 +11,8 @@ use Slim\Flash\Messages;
 use Slim\Views\Twig;
 use Slim\Routing\RouteContext;
 use PWP\Model\BookRepository;
+use DateTime;
+
 
 final class CatalogueController
 {
@@ -28,67 +30,43 @@ final class CatalogueController
     public function showBooks(Request $request, Response $response): Response
     {
         
-        $books = [];
-        //TODO: MysqlBookRepository instead of mocking the books
-        array_push($books, new Book('title1', 'author1', ' ', 0, ' '),new Book('title2', 'author2', ' ', 1, ' '));
-        
+        $books = $this->bookRepository->getAllBooks();
+            
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
 
         return $this->twig->render($response, 'catalogue.twig', [
             'books' => $books,
             'formAction' => $routeParser->urlFor("catalogue"),
-            'formMethod' => "POST"
+            'formMethod' => "POST",
+            'formActionDetails' => $routeParser->urlFor("details", ['id' => '1']),
+            'formMethodDetails' => "GET"
         
         ]);
     }
 
-    public function update(Request $request, Response $response): Response
-    {
-        $data = $request->getParsedBody();
-        $files = $request->getUploadedFiles();
-        
-        $user = $this->userRepository->getUserbyEmail($_SESSION['email']);
+    public function persistBook(Request $request, Response $response): Response
+{
+    $data = $request->getParsedBody();
+    $files = $request->getUploadedFiles();
+    
+    // Create a new Book object
+    $book = new Book(
+        $data['title'],
+        $data['author'],
+        $data['description'],
+        (int)$data['numberOfPages'],
+        $data['coverImageUrl'] ?? null, // Use null coalescing operator to handle optional cover image URL
+        new DateTime(), // Assuming current date and time for createdAt
+        new DateTime()  // Assuming current date and time for updatedAt
+    );
+    
+    // Save the book
+    $this->bookRepository->save($book);
+    
+    // Redirect to the catalogue page
+    $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+    return $response->withHeader('Location', $routeParser->urlFor('catalogue'))->withStatus(302);
+}
 
-        $errors = [];
-        if (empty($data['username'])) {
-            $errors['username'] = 'Username is required';
-        } else if(!$this->userRepository->isUsernameUnique($data['username'])){
-            $errors['username'] = 'Username already in use :(';
-           
-        } else{
-            $this->userRepository->updateUserUsername($_SESSION['email'], $data['username'] );
-        }
 
-        if (isset($files['profile-picture'])){
-            if ( $files['profile-picture']->getError() === UPLOAD_ERR_OK) {
-                //TODO how to persist the image
-            } else {
-                $errors['profile_picture'] = 'Profile picture upload error';
-            }
-        }
-        
-        //Get the user Updated:
-        $user = $this->userRepository->getUserbyEmail($_SESSION['email']);
-        
-        if (!empty($errors)) {
-           
-            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-
-            return $this->twig->render($response, 'profile.twig', [
-                'formErrors' => $errors,
-                'user' => $user,
-                'formAction' => $routeParser->urlFor("profile"),
-                'formMethod' => "POST"
-            ]);
-           
-        }else{
-            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-            return $response->withHeader('Location',  $routeParser->urlFor("home"))->withStatus(302);
-
-        }
-
-        
-
-        
-    }
 }

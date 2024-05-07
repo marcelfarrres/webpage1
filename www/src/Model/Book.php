@@ -21,7 +21,7 @@ final class Book
         string $author,
         string $description,
         int $pageNumber,
-        ?string $coverImage = null,
+        string $coverImage = null,
         DateTime $createdAt,
         DateTime $updatedAt
     ) {
@@ -39,9 +39,19 @@ final class Book
         return $this->title;
     }
 
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
+    }
+
     public function getAuthor(): string
     {
         return $this->author;
+    }
+
+    public function setAuthor(string $author): void
+    {
+        $this->author = $author;
     }
 
     public function getDescription(): string
@@ -49,9 +59,19 @@ final class Book
         return $this->description;
     }
 
+    public function setDescription(string $description): void
+    {
+        $this->description = $description;
+    }
+
     public function getPageNumber(): int
     {
         return $this->pageNumber;
+    }
+
+    public function setPageNumber(int $pageNumber): void
+    {
+        $this->pageNumber = $pageNumber;
     }
 
     public function getCoverImage(): ?string
@@ -59,13 +79,28 @@ final class Book
         return $this->coverImage;
     }
 
+    public function setCoverImage(?string $coverImage): void
+    {
+        $this->coverImage = $coverImage;
+    }
+
     public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
     }
 
+    public function setCreatedAt(DateTime $createdAt): void
+    {
+        $this->createdAt = $createdAt;
+    }
+
     public function getUpdatedAt(): DateTime
     {
         return $this->updatedAt;
+    }
+
+    public function setUpdatedAt(DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
     }
 }
