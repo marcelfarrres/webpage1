@@ -71,6 +71,8 @@ final class MysqlBookRepository implements BookRepository
                 $updatedAt
             );
 
+            $book->setId( (int)$row['id']);
+
             $books[] = $book;
         }
 
