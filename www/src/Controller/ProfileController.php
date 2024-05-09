@@ -46,11 +46,13 @@ final class ProfileController
         $data = $request->getParsedBody();
         $files = $request->getUploadedFiles();
         
+        
+        
         $user = $this->userRepository->getUserbyEmail($_SESSION['email']);
 
         $errors = [];
         if (empty($data['username'])) {
-            $errors['username'] = 'Username is required';
+            
         } else if(!$this->userRepository->isUsernameUnique($data['username'])){
             $errors['username'] = 'Username already in use :(';
            
@@ -58,13 +60,34 @@ final class ProfileController
             $this->userRepository->updateUserUsername($_SESSION['email'], $data['username'] );
         }
 
+        //get the profile User Updated
+        
         if (isset($files['profile-picture'])){
-            if ( $files['profile-picture']->getError() === UPLOAD_ERR_OK) {
-                //TODO how to persist the image
+            
+            if ($files['profile-picture']->getError() === UPLOAD_ERR_OK) {
+                
+                $uploadDir = __DIR__ . '/../../public/uploads/';
+                $uploadFile = $uploadDir . basename($files['profile-picture']->getClientFilename());
+
+        
+                if (move_uploaded_file($files['profile-picture']->getStream()->getMetadata('uri'), $uploadFile)) 
+                    {
+                    if($this->userRepository->updateProfileImage($_SESSION['email'], basename($files['profile-picture']->getClientFilename())))
+                    {
+                        //all good
+                    }else{
+                        $errors['profile_picture'] = 'Error storing the profile picture in the Database';
+                    }
+
+                } else {
+                    $errors['profile_picture'] = 'Error occurred while uploading profile picture';
+                }
             } else {
-                $errors['profile_picture'] = 'Profile picture upload error';
+                
+                
             }
         }
+        
         
         //Get the user Updated:
         $user = $this->userRepository->getUserbyEmail($_SESSION['email']);

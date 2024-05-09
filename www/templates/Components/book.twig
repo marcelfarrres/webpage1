@@ -1,27 +1,27 @@
-<div class="books-container">
-    <div class="books-wrapper">
-        {% for book in books %}
-            <div class="book">
-                <div class="book_title">
-                    <h2>{{ book.title }}</h2>
-                    <p><strong>Author:</strong> {{ book.author }}</p>
-                </div>
-                <div class="book-popup">
-                    <p><strong>Description:</strong> {{ book.description }}</p>
-                    <p><strong>Number of Pages:</strong> {{ book.pageNumber }}</p>
-                    {% if book.coverImage %}
-                        <img src="{{ book.coverImage }}" alt="Cover Image">
-                    {% endif %}
-                    <p><strong>Created At:</strong> {{ book.createdAt|date('Y-m-d H:i:s') }}</p>
-                    <p><strong>Updated At:</strong> {{ book.updatedAt|date('Y-m-d H:i:s') }}</p>
-                </div>
-                <div class="show-details">
-                    <form action="{{ url_for('details', { 'id': book.id}) }}" method="{{ formMethodDetails }}">
-                        <button type="submit">Show Details</button>
-                    </form>
 
+        {% for book in books %}
+        <div class="wrapper">
+            <div class="card">
+                <div class="card-main">
+                    <h2 class="book-title">Title: {{ book.title }}</h2>
+                    <h1 class="book-title">Author: {{ book.author }}</h1>
                 </div>
+                <div class="card-hidden">
+                    <p class="book-text">Description: {{ book.description }}</p>
+                    <p class="book-text">Number of Pages: {{ book.pageNumber }}</p>
+                    {% if book.coverImage %}
+                        <img class = "book-image" src="{{ book.coverImage }}" alt="Cover Image">
+                    {% endif %}
+                    <p class="book-text">Created At: {{ book.createdAt|date('Y-m-d H:i:s') }}</p>
+                    <p class="book-text">Updated At: {{ book.updatedAt|date('Y-m-d H:i:s') }}</p>
+                    <div class="show-details">
+                        <form action="{{ url_for('details', { 'id': book.id}) }}" method="{{ formMethodDetails }}">
+                            <button type="submit">Show Details</button>
+                        </form>
+                    </div>
+                </div>
+                
             </div>
+        </div>
         {% endfor %}
-    </div>
-</div>
+

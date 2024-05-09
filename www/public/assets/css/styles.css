@@ -15,6 +15,7 @@
 
 /* Label */
 .label {
+  
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
@@ -33,6 +34,11 @@
 /* Form group */
 .form-group {
   margin-bottom: 20px;
+}
+
+.profile-image{
+    width: 10%;
+    height: 10%;
 }
 
 /* Home page */

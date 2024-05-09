@@ -29,8 +29,8 @@ $app->get('/sign-in', SignInController::class . ':showForm');
 $app->post('/sign-in', SignInController::class . ':handleFormSubmission')->setName('sign-in');
 
 
-//Needs Authentication Middleware:
-$app->get('/profile', ProfileController::class . ':showProfile')->setName('profile')->add(AuthenticationMiddleware::class);
+//Needs Authentication Middleware:               
+$app->get('/profile', ProfileController::class . ':showProfile')->setName('profile')->add(AuthenticationMiddleware::class);;
 $app->post('/profile', ProfileController::class . ':updateProfile');
 
 $app->get('/catalogue', CatalogueController::class . ':showBooks')->setName('catalogue');

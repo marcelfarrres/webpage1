@@ -11,6 +11,7 @@ use Slim\Flash\Messages;
 use Slim\Views\Twig;
 use Slim\Routing\RouteContext;
 use PWP\Model\BookRepository;
+use PWP\Model\BookService;
 use DateTime;
 
 
@@ -19,12 +20,14 @@ final class CatalogueController
     private Twig $twig;
     private Messages $flash;
     private BookRepository $bookRepository; 
+    private BookService $bookService; 
 
-    public function __construct(Twig $twig, Messages $flash, BookRepository $bookRepository)
+    public function __construct(Twig $twig, Messages $flash, BookRepository $bookRepository, BookService $bookService)
     {
         $this->twig = $twig;
         $this->flash = $flash;
         $this->bookRepository = $bookRepository;
+        $this->bookService = $bookService;
     }
 
     public function showBooks(Request $request, Response $response): Response
@@ -47,9 +50,25 @@ final class CatalogueController
     public function persistBook(Request $request, Response $response): Response
 {
     $data = $request->getParsedBody();
-    $files = $request->getUploadedFiles();
     
-    // Create a new Book object
+    
+    if(!empty($data['isbn']) ){
+        
+    $bookAndWorkKey = $this->bookService->getBookByISBN($data['isbn']);
+
+    //return [ 'book' => $book, 'workKey' => $responseArray['works'][0]['key'] ];
+
+    $bookAndAuthorKey = $this->bookService->updateBookByWorkId($bookAndWorkKey['workKey'], $bookAndWorkKey['book']);
+    //return [ 'book' => $book, 'authorKey' => $responseArray['authors'][0]['author']['key'] ];
+    
+    $finalBook =  $this->bookService->updateBookByAuthorId( $bookAndAuthorKey['authorKey'], $bookAndAuthorKey['book']);
+    // return $book;
+
+    $this->bookRepository->save($finalBook);
+    }
+
+    if(!empty($data['title']) ){
+        // Create a new Book object
     $book = new Book(
         $data['title'],
         $data['author'],
@@ -62,6 +81,8 @@ final class CatalogueController
     
     // Save the book
     $this->bookRepository->save($book);
+    }
+    
     
     // Redirect to the catalogue page
     $routeParser = RouteContext::fromRequest($request)->getRouteParser();

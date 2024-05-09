@@ -15,48 +15,23 @@
     <div class="form_container">
         <form class="book_form" action="{{ formAction }}"  method="{{ formMethod }}" accept-charset="utf-8">
             <label class="label" for="full_form_title">Title:</label>
-            <input class="input" type="text" id="full_form_title" name="title" required>
+            <input class="input" type="text" id="full_form_title" name="title" >
             <label class="label" for="full_form_author">Author:</label>
-            <input class="input" type="text" id="full_form_author" name="author" required>
+            <input class="input" type="text" id="full_form_author" name="author" >
             <label class="label" for="full_form_description">Description:</label>
-            <textarea class="input" id="full_form_description" name="description" rows="4" required></textarea>
+            <textarea class="input" id="full_form_description" name="description" rows="4" ></textarea>
             <label class="label" for="full_form_pages">Number of Pages:</label>
-            <input class="input" type="number" id="full_form_pages" name="numberOfPages" required>
+            <input class="input" type="number" id="full_form_pages" name="numberOfPages" >
             <label class="label" for="full_form_cover">Cover Image URL:</label>
             <input class="input" type="url" id="full_form_cover" name="coverImageUrl">
+
+            <label class="label" for="isbn">or ISBN:</label>
+            <input class="input" type="text" id="isbn" name="isbn" >
             <button class="button" type="submit">Create Book</button>
         </form>
     </div>
 
-    <h2>Import Book by ISBN</h2>
-    <div class="form_container">
-        <form class="isbn_form" action="{{ formAction }}"  method="{{ formMethod }}"  accept-charset="utf-8">
-            <label class="label" for="isbn">ISBN:</label>
-            <input class="input" type="text" id="isbn" name="isbn" required>
-            <button class="button" type="submit">Import Book</button>
-        </form>
-    </div>
+    
 </div>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-    const books = document.querySelectorAll('.book');
-    const popup = document.querySelector('.book-popup');
-    const overlay = document.querySelector('.overlay');
 
-    books.forEach(function (book) {
-        book.addEventListener('mouseenter', function () {
-            const bookDetails = this.querySelector('.book-popup');
-            bookDetails.classList.add('active');
-            overlay.classList.add('active');
-        });
-
-        book.addEventListener('mouseleave', function () {
-            const bookDetails = this.querySelector('.book-popup');
-            bookDetails.classList.remove('active');
-            overlay.classList.remove('active');
-        });
-    });
-});
-
-</script>
 {% endblock %}

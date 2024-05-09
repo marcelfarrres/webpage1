@@ -1,59 +1,86 @@
-/* Book details popup container */
-.book-popup {
-    display: none;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 20px;
-    z-index: 2;
+
+.book-text .book-author .book-image .book-title {
+  padding:10px;
+  margin: 10px;
 }
 
-/* Show book details popup */
-.book-popup.active {
-    display: block;
-}
-
-/* Overlay */
-.overlay {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 1;
-}
-
-/* Show overlay */
-.overlay.active {
-    display: block;
-}
-
-/* Book */
-.book {
-    width: 130px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-right: 10px;
-    background-color: #f9f9f9;
-    cursor: pointer;
-}
-
-/* Book title */
-.book_title {
+.book-title {
     font-size: 16px;
     font-weight: bold;
     margin-bottom: 5px;
 }
 
-/* Book author */
-.book_author {
+.book-author {
     font-size: 14px;
     margin-bottom: 5px;
+}
+
+.book-image {
+    width: 20%;
+    height: 20%;
+}
+
+/********************************************/
+
+
+
+.card {
+  position: relative;
+  padding: 30px;
+  width: min(200px, 20vw);
+  height: 16em;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  background: #ffffff;
+  transition: transform ease 0.25s;
+  
+}
+
+.card-main, .card-hidden {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-radius: 10px;
+  backface-visibility: hidden;
+ 
+}
+
+.card-main {
+  z-index: 1;
+}
+
+.card-hidden {
+  z-index: 0;
+  transition: z-index ease 0.25s;
+  transform: scaleX(-1);
+}
+
+.wrapper {
+  transform:
+    perspective(2000px)
+    translate3d(0px, -66px, 198px)
+    rotateX(-55deg)
+    scale3d(0.86, 0.75, 1)
+    translateY(50px);
+  border-radius: 5px;
+  will-change: transform;
+  transition: 0.4s ease-in-out transform;
+  width: auto;
+  display: inline-block;
+}
+
+.wrapper:hover{
+  transform: scale3d(1, 1, 1);
+}
+.wrapper:hover .card {
+  transform:  rotate3d(0, 1, 0, 180deg)
+              
+    ;
+}
+
+.wrapper:hover .card-hidden {
+  z-index: 11;
 }

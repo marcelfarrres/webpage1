@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="main_container">
-    <form class="secondary_container" data-cy="profile" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8"">
+    <form class="secondary_container" data-cy="profile" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8" enctype="multipart/form-data">
         <div class="form-group">
             <label class="label" for="email">Email:</label>
             <input class="input" data-cy="profile__email" type="email" id="email" name="email" value="{{ user.email }}" disabled>
@@ -25,9 +25,9 @@
                 <p class="errorMessage">{{ formErrors.profile_picture }}</p>
             {% endif %}
             {% if user.profile_picture %}
-                <img src="/uploads/{{ user.profile_picture }}" alt="Profile Picture">
+                <img class="profile-image" src="/uploads/{{ user.profile_picture }}" alt="Profile Picture">
             {% else %}
-                <img src="/placeholder.jpg" alt="Placeholder">
+                <img class="profile-image" src="/assets/images/placeholderProfile.jpg" alt="Placeholder" >
             {% endif %}
         </div>
         <button class="button" data-cy="profile__btn" type="submit">Update Profile</button>

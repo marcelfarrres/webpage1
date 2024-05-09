@@ -1,0 +1,110 @@
+
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* Gap between cards */
+}
+
+.card-1, .card-2, .card-3, .card-4, .card-5 {
+    padding: px;
+    border: 1px solid #ccc;
+    border-color: white;
+    background-color: rgb(237, 183, 82);
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center; /* Align horizontally */
+    align-items: center; /* Align vertically */
+    position: relative; /* Required for absolute positioning of labels */
+    transform:
+        rotateX(51deg)
+        rotateZ(43deg);
+    transform-style: preserve-3d;
+    border-radius: 32px;
+    box-shadow:
+        1px 1px 0 1px #f9f9fb;
+        
+    transition:
+        .4s ease-in-out transform,
+        .4s ease-in-out box-shadow;
+}
+.card-2{
+    transform:
+    translateX(-100%)
+    rotateX(40deg)
+    rotateZ(43deg);
+}
+.card-3{
+    transform:
+    translateX(-200%)
+    rotateX(30deg)
+    rotateZ(43deg);
+}
+.card-4{
+    transform:
+    translateX(-300%)
+    rotateX(20deg)
+    rotateZ(43deg);
+}
+.card-5{
+    transform:
+    translateX(-400%)
+    rotateX(10deg)
+    rotateZ(43deg);
+}
+.card-6{
+    transform:
+    translateX(-400%)
+    rotateX(0deg)
+    rotateZ(43deg)
+    scale(0.00001);
+}
+
+.navbar:hover .card-1, 
+.navbar:hover .card-2,
+.navbar:hover .card-3,
+.navbar:hover .card-4,
+.navbar:hover .card-5 {
+    transform:
+        translate3d(0px, -16px, 0px)
+        rotateX(0deg)
+        rotateZ(0deg)
+        scale(1.2);
+}
+.navbar:hover .card-6 {
+    transform:
+        translate3d(0px, -16px, 0px)
+        rotateX(0deg)
+        rotateZ(0deg)
+        scale(5);
+}
+
+.label-navBar{
+    /* Additional styles for the label */
+    color: black; /* Change label color */
+    font-size: 20px; /* Adjust font size */
+    font: status-bar;
+    font-weight: bold; /* Make it bold */
+    position: absolute; /* Position label relative to card */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Move back by half of its own size */
+    transition: opacity 0.4s ease-in-out; /* Smooth transition for opacity */
+    cursor: pointer;
+}
+
+
+.navbar_container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 10px; /* Adjust as needed */
+    background-color: #fff; /* Background color for navbar */
+    cursor: pointer;
+   
+}
+
+
+

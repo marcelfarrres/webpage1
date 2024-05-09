@@ -7,11 +7,14 @@ namespace PWP\Model\Service;
 use GuzzleHttp\Client;
 use PWP\Model\Book;
 use PWP\Model\BookService;
+use DateTime;
 
 
 final class GuzzleBookService implements BookService{
     private $apiUrl;
     private $apiKey;
+
+  
 
     public function __construct() {
         $this->apiUrl = "https://openlibrary.org";
@@ -30,7 +33,10 @@ final class GuzzleBookService implements BookService{
             '',
             '',
             $responseArray['number_of_pages'],
-            $this->apiUrl . '/b/id/' . $responseArray['covers'] . '-L.jpg'
+            $this->apiUrl . '/b/id/' . $responseArray['covers'][0] . '-L.jpg',
+            new DateTime(),
+            new DateTime()
+
         );
     
         // Return an array with both the book object and the key from the response
@@ -47,8 +53,9 @@ final class GuzzleBookService implements BookService{
         $response = $client->request('GET', $this->apiUrl . $workId . '.json', []);
         $responseBody = $response->getBody()->__toString();
         $responseArray = json_decode($responseBody, true);
-
-        $book->setDescription($responseArray['description']);
+       
+        
+        //$book->setDescription($responseArray['description']);
 
         return [
             'book' => $book,
@@ -63,6 +70,7 @@ final class GuzzleBookService implements BookService{
         $response = $client->request('GET', $this->apiUrl . $authorId . '.json', []);
         $responseBody = $response->getBody()->__toString();
         $responseArray = json_decode($responseBody, true);
+       
 
         $book->setAuthor($responseArray['name']);
 
