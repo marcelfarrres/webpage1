@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 use DI\Container;
+
 use Slim\Views\Twig;
 use Psr\Container\ContainerInterface;
 use Slim\Flash\Messages;
@@ -13,6 +14,14 @@ use PWP\Model\Service\GuzzleBookService;
 use PWP\Model\BookService;
 use PWP\Model\BookRepository;
 use PWP\Model\Repository\MysqlBookRepository;
+use PWP\Model\RateRepository;
+use PWP\Model\ReviewRepository;
+use PWP\Model\Repository\MysqlRateRepository;
+use PWP\Model\Repository\MysqlReviewRepository;
+use PWP\Model\ForumRepository;
+use PWP\Model\Repository\MysqlForumRepository;
+
+
 
 
 
@@ -50,6 +59,19 @@ $container->set(UserRepository::class, function (ContainerInterface $c) {
 
 $container->set(BookRepository::class, function (ContainerInterface $c) {
     return $c->get(MysqlBookRepository::class);
+});
+
+$container->set(RateRepository::class, function (ContainerInterface $c) {
+    return $c->get(MysqlRateRepository::class);
+});
+
+$container->set(ReviewRepository::class, function (ContainerInterface $c) {
+    return $c->get(MysqlReviewRepository::class);
+});
+
+//API-MySqlRepos------------------------------------------------------------------------
+$container->set(ForumRepository::class, function (ContainerInterface $c) {
+    return $c->get(MysqlForumRepository::class);
 });
 
 //Services------------------------------------------------------------------------

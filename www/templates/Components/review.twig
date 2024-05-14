@@ -1,0 +1,12 @@
+<form action="{{ url_for('review', { 'id': book.id}) }}" method="POST">
+    <input type="hidden" name="_METHOD" value="PUT"/>
+    {% if review %}
+    <textarea name="reviewText" placeholder="{{ review }}" required></textarea>
+    
+    {% else %}
+    <textarea name="reviewText" placeholder="Write your review here..." required></textarea>
+    {% endif %}
+
+    
+    <button class="button" type="submit">Submit Review</button>
+</form>

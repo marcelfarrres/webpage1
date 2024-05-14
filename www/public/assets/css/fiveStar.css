@@ -1,0 +1,45 @@
+.rating {
+    display: inline-block;
+    position: relative;
+  }
+  
+  .rating input {
+    display: none;
+  }
+  
+  .rating label {
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    margin: 0 2px;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: center;
+  }
+  
+  .rating label:before {
+    content: '★';
+  }
+  
+  .rating input:checked ~ label:before {
+    color: gold;
+  }
+  
+  .rating:hover input:not(:checked) ~ label:before {
+    color: gold;
+  }
+  
+  .rating input:checked ~ label:hover,
+  .rating input:checked ~ label:hover ~ label {
+    color: gold;
+  }
+  
+  .rating label:hover ~ input:checked ~ label:before {
+    color: gold;
+  }
+  
+  /* Animation */
+  .rating label {
+    transition: color 0.2s;
+  }
+  

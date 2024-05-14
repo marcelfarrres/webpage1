@@ -9,6 +9,7 @@ use DateTime;
 final class User
 {
 
+    private int $id;
     private string $email;
     private string $password; 
     private string $username;  
@@ -22,6 +23,7 @@ final class User
         DateTime $created_at,
         DateTime $updated_at
     ) {
+        $this->id = 0;
         $this->email = $email;
         $this->password = $password;
         $this->username = '';
@@ -70,5 +72,15 @@ final class User
     public function updated_at(): DateTime
     {
         return $this->updated_at;
+    }
+
+    public function id(): int
+    {
+        return $this->id;
+    }
+
+    public function setId($id): void
+    {
+        $this->id = $id;
     }
 }

@@ -7,6 +7,7 @@
 
 {% block head %}
     <link rel="stylesheet" href="/assets/css/details.css"/>
+    <link rel="stylesheet" href="/assets/css/fiveStar.css"/>
 {% endblock %}
 
 {% block content %}
@@ -33,6 +34,7 @@
         
     </div>
 </div>
-<div class="overlay"></div>
+{% include 'Components/fiveStar.twig' %} 
+{% include 'Components/review.twig' %} 
 
 {% endblock %}

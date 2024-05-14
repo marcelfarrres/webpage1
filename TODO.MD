@@ -33,19 +33,22 @@
     - [ ] Catalogue 
        |---[x] Main Structure and routing
        |---[x] Create and connect the BookRepository
-       |---[ ] Forms distribution
-       |---[ ] Implement the BookService created
+       |---[x] Forms distribution
+       |---[x] Implement the BookService created
 
     - [ ] Book Details
-       |---[ ] Hacer lo de /catalogue/id
+       |---[x] Hacer lo de /catalogue/id
        
     - [ ] Book Ratings and Reviews
+        |---[x] Add and get
+        |---[ ] Delete Rating
+        |---[ ] Delete Review
+
     - [ ] Discussion Forums
     - [ ] Forum Posts
-    - [ ] Discussion Forums
 
 - [ ] Extra Features
-    - [ ] Navigation Menu Sidebar
+    - [x] Navigation Menu Sidebar
     - [ ] Discussion Forums (API)
 
 - [ ] Delivery 

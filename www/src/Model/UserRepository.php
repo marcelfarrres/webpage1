@@ -21,4 +21,6 @@ interface UserRepository
     public function updateProfileImage(string $email, string $newProfilePicture): bool;
 
     public function isUsernameUnique(string $username): bool;
+
+    
 }

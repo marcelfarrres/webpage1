@@ -5,13 +5,14 @@
     justify-content: center;
     align-items: center;
     gap: 10px; /* Gap between cards */
+    background-color: transparent;
 }
 
 .card-1, .card-2, .card-3, .card-4, .card-5 {
     padding: px;
-    border: 1px solid #ccc;
-    border-color: white;
-    background-color: rgb(237, 183, 82);
+    border: 1px solid #ffffff;
+    border-color: rgb(205, 205, 205);
+    background-color: rgb(0, 0, 0);
     width: 100px;
     height: 100px;
     display: flex;
@@ -24,66 +25,75 @@
     transform-style: preserve-3d;
     border-radius: 32px;
     box-shadow:
-        1px 1px 0 1px #f9f9fb;
+        1px 1px 0 1px #f8f8f8;
         
     transition:
-        .4s ease-in-out transform,
-        .4s ease-in-out box-shadow;
+        1s ease-in-out transform;
+       
+        
 }
 .card-2{
     transform:
     translateX(-100%)
     rotateX(40deg)
     rotateZ(43deg);
+    transition:
+        .8s ease-in-out transform;
 }
 .card-3{
     transform:
     translateX(-200%)
     rotateX(30deg)
     rotateZ(43deg);
+    transition:
+        .6s ease-in-out transform;
 }
 .card-4{
     transform:
     translateX(-300%)
     rotateX(20deg)
     rotateZ(43deg);
+    transition:
+        .4s ease-in-out transform;
 }
 .card-5{
     transform:
     translateX(-400%)
     rotateX(10deg)
     rotateZ(43deg);
+    transition:
+        .3s ease-in-out transform,
+        opacity 0.5s ease;
+        
+        
+
 }
-.card-6{
-    transform:
-    translateX(-400%)
-    rotateX(0deg)
-    rotateZ(43deg)
-    scale(0.00001);
-}
+
 
 .navbar:hover .card-1, 
 .navbar:hover .card-2,
 .navbar:hover .card-3,
-.navbar:hover .card-4,
+.navbar:hover .card-4{
+    transform:
+        translate3d(0px, -16px, 0px);
+        
+}
+
 .navbar:hover .card-5 {
     transform:
-        translate3d(0px, -16px, 0px)
-        rotateX(0deg)
-        rotateZ(0deg)
-        scale(1.2);
+        translate3d(1000px, -16px, 0px)
+       ;
+    
+   
+    opacity: 0;
+        
+        
 }
-.navbar:hover .card-6 {
-    transform:
-        translate3d(0px, -16px, 0px)
-        rotateX(0deg)
-        rotateZ(0deg)
-        scale(5);
-}
+
 
 .label-navBar{
     /* Additional styles for the label */
-    color: black; /* Change label color */
+    color: rgb(255, 255, 255); /* Change label color */
     font-size: 20px; /* Adjust font size */
     font: status-bar;
     font-weight: bold; /* Make it bold */
@@ -101,10 +111,16 @@
     bottom: 0;
     left: 0;
     padding: 10px; /* Adjust as needed */
-    background-color: #fff; /* Background color for navbar */
+    background-color: transparent; /* Background color for navbar */
     cursor: pointer;
    
 }
 
+.nav-logo{
+    position: fixed;
+    
+    height: 15vh;
+    transform: rotateZ(-43deg);
 
+}
 

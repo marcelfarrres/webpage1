@@ -105,7 +105,7 @@ public function getBookById(int $id): Book {
     $createdAt = DateTime::createFromFormat(self::DATE_FORMAT, $row['created_at']);
     $updatedAt = DateTime::createFromFormat(self::DATE_FORMAT, $row['updated_at']);
 
-    return new Book(
+    $book = new Book(
         $row['title'],
         $row['author'],
         $row['description'],
@@ -114,6 +114,9 @@ public function getBookById(int $id): Book {
         $createdAt,
         $updatedAt
     );
+
+    $book->setId($row['id']);
+    return $book;
 }
 
 public function getIdByTitle(string $title): int {

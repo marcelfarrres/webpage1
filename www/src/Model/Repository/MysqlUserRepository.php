@@ -109,8 +109,7 @@ public function getUserbyEmail(string $email): User
     );
     $user->setUsername($data['username']);
     $user->setProfile_picture($data['profile_picture']);
-    //TODO add setProfile_picture() when all problems related to image resolved
-
+    $user->setId($data['id']);
     return $user;
 }
 
