@@ -1,8 +1,9 @@
 /* Main container */
 body{
   background-color: black;
-  height: 100vh;
-  margin: 0;
+  color: white;
+  margin: 0px;
+  margin-bottom: 150px;
 }
 .main_container {
   max-width: 100%;

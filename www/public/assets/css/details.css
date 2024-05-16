@@ -1,6 +1,9 @@
 .books-wrapper {
     display: flex;
     flex-wrap: wrap;
+    background-color: black; /* Set background color to black */
+    color: white; /* Set text color to white for better visibility */
+    padding: 20px; /* Add padding for spacing */
 }
 
 .book {
@@ -25,4 +28,11 @@
     flex-grow: 1;
 }
 
+/* Additional styles for better visibility of text */
+.book-details h2 {
+    color: white; /* Set heading text color to white */
+}
 
+.book-details p {
+    margin: 5px 0; /* Add margin for spacing between paragraphs */
+}

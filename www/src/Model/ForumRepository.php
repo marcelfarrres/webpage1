@@ -14,5 +14,9 @@ interface ForumRepository
 
     public function getForumById(int $id): Forum;
 
+    public function getLastForumAdded(): Forum ;
+
+    public function deleteForum(int $id): bool ;
+
     
 }

@@ -1,0 +1,35 @@
+{% extends "base.twig" %}
+
+{% block title %}Forum Details{% endblock %}
+
+{% block script %}
+<script src="/assets/script/post.js"></script>
+{% endblock %}
+
+{% block content %}
+<div id="forumId" data-forum-id="{{ forumId }}"></div>
+
+<h1>Forum Details</h1>
+
+<div class="secondary_container" id="forum-details">
+</div>
+
+<div class="secondary_container" id="posts-list">
+
+    <!-- List of Posts -->
+    <h2>List of Posts</h2>
+    <ul class="main_container" id="post-list">
+        
+    </ul>
+
+    <!-- Form to Submit a New Post -->
+    <h2>Create a New Post</h2>
+    <form id="create-post-form">
+        <label class="label" for="title">Title:</label><br>
+        <input class="input" type="text" id="title" name="title"><br>
+        <label class="label" for="contents">Contents:</label><br>
+        <textarea id="contents" name="contents"></textarea><br>
+        <button class="button" type="submit">Submit Post</button>
+    </form>
+</div>
+{% endblock %}

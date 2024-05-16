@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 use DI\Container;
 
+
 use Slim\Views\Twig;
 use Psr\Container\ContainerInterface;
 use Slim\Flash\Messages;
@@ -20,6 +21,10 @@ use PWP\Model\Repository\MysqlRateRepository;
 use PWP\Model\Repository\MysqlReviewRepository;
 use PWP\Model\ForumRepository;
 use PWP\Model\Repository\MysqlForumRepository;
+use PWP\Model\PostRepository;
+use PWP\Model\Repository\MysqlPostRepository;
+
+
 
 
 
@@ -72,6 +77,10 @@ $container->set(ReviewRepository::class, function (ContainerInterface $c) {
 //API-MySqlRepos------------------------------------------------------------------------
 $container->set(ForumRepository::class, function (ContainerInterface $c) {
     return $c->get(MysqlForumRepository::class);
+});
+
+$container->set(PostRepository::class, function (ContainerInterface $c) {
+    return $c->get(MysqlPostRepository::class);
 });
 
 //Services------------------------------------------------------------------------

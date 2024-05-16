@@ -46,14 +46,16 @@ final class MysqlPostRepository implements PostRepository
         $statement->execute();
     }
 
-    public function getAllPosts(): array
+    public function getAllPosts( int $forumId ): array
     {
         $posts = [];
         $query = <<<'QUERY'
-            SELECT * FROM posts
+            SELECT * FROM posts WHERE forum_id = :forum_id
         QUERY;
 
-        $statement = $this->database->query($query);
+        $statement = $this->database->prepare($query);
+        $statement->bindParam(':forum_id', $forumId, PDO::PARAM_INT);
+        $statement->execute();
 
         while ($row = $statement->fetch(PDO::FETCH_ASSOC)) {
             $createdAt = DateTime::createFromFormat(self::DATE_FORMAT, $row['created_at']);
@@ -115,4 +117,42 @@ final class MysqlPostRepository implements PostRepository
         return $post;
     }
 
+    public function getLastPostAdded(): Post
+    {
+        $query = <<<'QUERY'
+        SELECT * FROM posts ORDER BY created_at DESC LIMIT 1
+        QUERY;
+
+        $statement = $this->database->prepare($query);
+        
+        $statement->execute();
+
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if (!$row) {
+            return new Post(
+                0,
+                0,
+                '',
+                '',
+                new DateTime(),
+                new DateTime()
+            );
+        }
+
+        $createdAt = DateTime::createFromFormat(self::DATE_FORMAT, $row['created_at']);
+        $updatedAt = DateTime::createFromFormat(self::DATE_FORMAT, $row['updated_at']);
+
+        $post = new Post(
+            (int)$row['user_id'],
+            (int)$row['forum_id'],
+            $row['title'],
+            $row['contents'],
+            $createdAt,
+            $updatedAt
+        );
+
+        $post->setId($row['id']);
+        return $post;
+    }
 }

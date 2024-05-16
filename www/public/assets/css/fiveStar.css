@@ -1,13 +1,14 @@
 .rating {
     display: inline-block;
     position: relative;
-  }
-  
-  .rating input {
+    color: white; /* Set text color to white for better visibility */
+}
+
+.rating input {
     display: none;
-  }
-  
-  .rating label {
+}
+
+.rating label {
     cursor: pointer;
     width: 20px;
     height: 20px;
@@ -15,31 +16,31 @@
     font-size: 18px;
     line-height: 20px;
     text-align: center;
-  }
-  
-  .rating label:before {
+    color: white; /* Set text color to white for better visibility */
+}
+
+.rating label:before {
     content: '★';
-  }
-  
-  .rating input:checked ~ label:before {
+}
+
+.rating input:checked ~ label:before {
     color: gold;
-  }
-  
-  .rating:hover input:not(:checked) ~ label:before {
+}
+
+.rating:hover input:not(:checked) ~ label:before {
     color: gold;
-  }
-  
-  .rating input:checked ~ label:hover,
-  .rating input:checked ~ label:hover ~ label {
+}
+
+.rating input:checked ~ label:hover,
+.rating input:checked ~ label:hover ~ label {
     color: gold;
-  }
-  
-  .rating label:hover ~ input:checked ~ label:before {
+}
+
+.rating label:hover ~ input:checked ~ label:before {
     color: gold;
-  }
-  
-  /* Animation */
-  .rating label {
+}
+
+/* Animation */
+.rating label {
     transition: color 0.2s;
-  }
-  
+}

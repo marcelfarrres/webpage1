@@ -17,8 +17,8 @@ final class Forum
     public function __construct(
         string $title,
         ?string $description,
-        DateTime $createdAt,
-        DateTime $updatedAt
+        ?DateTime $createdAt,
+        ?DateTime $updatedAt
     ) {
         $this->id = 0;
         $this->title = $title;

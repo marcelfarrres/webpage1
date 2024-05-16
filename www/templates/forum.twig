@@ -1,0 +1,31 @@
+{% extends "base.twig" %}
+
+{% block title %}Forums{% endblock %}
+
+
+{% block script %}
+<script src="/assets/script/forum.js"></script>
+
+{% endblock %}
+
+{% block content %}
+<h1>Forums</h1>
+
+    <!-- List of Forums -->
+    <h2>List of Forums</h2>
+    <ul class= "main_container" id="forum-list">
+        
+    </ul>
+
+    <!-- Form to Create a New Forum -->
+    <h2>Create a New Forum</h2>
+    <form id="create-forum-form">
+        <label class="label" for="title">Title:</label><br>
+        <input class="input" type="text" id="title" name="title"><br>
+        <label class="label" for="description">Description:</label><br>
+        <textarea id="description" name="description"></textarea><br>
+        <button class="button" type="submit">Create Forum</button>
+    </form>
+
+
+{% endblock %}

@@ -1,6 +1,0 @@
-- Why rate/review dont accept PUT request
-- How can I make the view a bit longer so the menu doesnt cover any element
-- Can the details contain the review and the rate?
-- Can I create an interface with all the MYSQL REPOS? How can I do it in the dependecies.php
-- How can I convert the URLs of the book API?
-- Am I understanding well the Forums thing?

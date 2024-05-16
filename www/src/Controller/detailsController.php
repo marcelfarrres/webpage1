@@ -37,8 +37,6 @@ final class DetailsController
         $this->userRepository = $userRepository;
         $this->rateRepository = $rateRepository;
 
-
-
     }
 
     public function showDetails(Request $request, Response $response, array $args): Response
@@ -58,9 +56,10 @@ final class DetailsController
         
         return $this->twig->render($response, 'details.twig', [
             'book' => $book,
-            'review' => $review->getReviewText(),
-            'rate' => $rate->getRating()
+            'review' => isset($review) ? $review->getReviewText() : null,
+            'rate' => isset($rate) ? $rate->getRating() : null
         ]);
+        
 
     }
     

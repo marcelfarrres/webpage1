@@ -103,4 +103,47 @@ final class MysqlForumRepository implements ForumRepository
         return $forum;
     }
 
+    public function getLastForumAdded(): Forum {
+        $query = <<<'QUERY'
+        SELECT * FROM forums ORDER BY created_at DESC LIMIT 1
+        QUERY;
+
+        $statement = $this->database->prepare($query);
+        
+        $statement->execute();
+
+        $row = $statement->fetch(PDO::FETCH_ASSOC);
+
+        if (!$row) {
+            return new Forum(
+                '',
+                '',
+                new DateTime(),
+                new DateTime()
+            );
+        }
+
+        $createdAt = DateTime::createFromFormat(self::DATE_FORMAT, $row['created_at']);
+        $updatedAt = DateTime::createFromFormat(self::DATE_FORMAT, $row['updated_at']);
+
+        $forum = new Forum(
+            $row['title'],
+            $row['description'],
+            $createdAt,
+            $updatedAt
+        );
+
+        $forum->setId($row['id']);
+        return $forum;
+    }
+
+    public function deleteForum(int $id): bool {
+        $query = <<<'QUERY'
+        DELETE FROM forums WHERE id = :id
+        QUERY;
+        $statement = $this->database->prepare($query);
+        $statement->bindParam(':id', $id, PDO::PARAM_INT);
+        return $statement->execute();
+    }
+
 }

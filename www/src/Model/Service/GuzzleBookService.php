@@ -32,8 +32,8 @@ final class GuzzleBookService implements BookService{
             $responseArray['title'],
             '',
             '',
-            $responseArray['number_of_pages'],
-            $this->apiUrl . '/b/id/' . $responseArray['covers'][0] . '-L.jpg',
+            $responseArray['number_of_pages'] ?? 0,
+            'https://covers.openlibrary.org/b/id/' . $responseArray['covers'][0] . '-L.jpg',
             new DateTime(),
             new DateTime()
 

@@ -45,3 +45,5 @@ $app->put('/catalogue/{id}/rate', RateController::class . ':putRating')->setName
 
 $app->put('/catalogue/{id}/review', ReviewController::class . ':putReview')->setName('review');
 
+
+
