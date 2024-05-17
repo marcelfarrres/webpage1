@@ -33,10 +33,10 @@ $app->post('/sign-in', SignInController::class . ':handleFormSubmission')->setNa
 $app->get('/profile', ProfileController::class . ':showProfile')->setName('profile')->add(AuthenticationMiddleware::class);
 $app->post('/profile', ProfileController::class . ':updateProfile')->add(AuthenticationMiddleware::class);
 
-$app->get('/catalogue', CatalogueController::class . ':showBooks')->setName('catalogue')->add(AuthenticationMiddleware::class)->add(UsernameMiddleware::class);
+$app->get('/catalogue', CatalogueController::class . ':showBooks')->setName('catalogue')->add(UsernameMiddleware::class)->add(AuthenticationMiddleware::class);
 $app->post('/catalogue', CatalogueController::class . ':persistBook')->add(AuthenticationMiddleware::class);
 
-$app->get('/details/{id}', DetailsController::class . ':showDetails')->setName('details')->add(AuthenticationMiddleware::class)->add(UsernameMiddleware::class);
+$app->get('/details/{id}', DetailsController::class . ':showDetails')->setName('details')->add(UsernameMiddleware::class)->add(AuthenticationMiddleware::class);
 
 $app->put('/catalogue/{id}/rate', RateController::class . ':putRating')->setName('rate')->add(AuthenticationMiddleware::class);
 $app->delete('/catalogue/{id}/rate', RateController::class . ':deleteRating')->add(AuthenticationMiddleware::class);
