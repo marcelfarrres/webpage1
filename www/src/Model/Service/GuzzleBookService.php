@@ -54,7 +54,7 @@ final class GuzzleBookService implements BookService{
         $responseBody = $response->getBody()->__toString();
         $responseArray = json_decode($responseBody, true);
        
-        
+        //some books dont have and gives error
         //$book->setDescription($responseArray['description']);
 
         return [

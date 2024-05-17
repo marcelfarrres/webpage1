@@ -1,34 +1,69 @@
-/* Main container */
+@font-face {
+  font-family: 'Main-font';
+  src: url('../fonts/ClashDisplay-Variable.ttf') ;
+}
+
+
+
 body{
   background-color: black;
   color: white;
   margin: 0px;
   margin-bottom: 150px;
+  font-family: 'Main-font' 
 }
 .main_container {
   max-width: 100%;
   margin: 0 auto;
   padding: 20px;
-  background-color: black; /* Change background color to black */
-  color: white; /* Change text color to white */
+  background-color: black; 
+  color: white; 
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-/* Secondary container */
+
 .secondary_container {
   margin-top: 20px;
+  border: 3px solid #ccc;
+  border-radius: 7px;
+  padding: 20px;
+
 }
 
-/* Label */
+.third_container {
+  margin-top: 20px;
+  border: 3px solid #ccc;
+  border-radius: 7px;
+  padding: 20px;
+  background-color: #404040;
+
+  display: grid;
+    grid-template-columns: 2fr 1fr ; 
+    grid-gap: 10px; 
+
+  
+}
+
+.third_container .label1{
+  background-color: #4b4e74;
+}
+
+.third_container .label2{
+  border-bottom: #f9f9f9;
+  border-bottom-width: 2px solid ;
+
+}
+
+
 .label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: white; /* Change label color to white */
+  color: white; 
 }
 
-/* Input */
+
 .input {
   width: 100%;
   padding: 8px;
@@ -36,11 +71,11 @@ body{
   border: 1px solid #ccc;
   border-radius: 3px;
   box-sizing: border-box;
-  background-color: #f9f9f9; /* Change input background color to white */
-  color: black; /* Change input text color to black */
+  background-color: #f9f9f9; 
+  color: black; 
 }
 
-/* Form group */
+
 .form-group {
   margin-bottom: 20px;
 }
@@ -50,7 +85,14 @@ body{
     height: 10%;
 }
 
-/* Home page */
+.user-post-image {
+  width: 70px; 
+  height: 70px; 
+  object-fit: cover; 
+  border-radius: 50%; 
+}
+
+
 .button {
   display: inline-block;
   padding: 10px 20px;
@@ -60,7 +102,21 @@ body{
   border: none;
   border-radius: 3px;
   cursor: pointer;
-  text-decoration: none;
+  font-family: 'Main-font';
+  transition: transform 0.3s ease;
+}
+
+.button_black {
+  display: inline-block;
+  padding: 10px 20px;
+  margin-right: 10px;
+  background-color: #000000;
+  color: #ffffff;
+  border: none;
+  border-radius: 3px;
+  font-family: 'Main-font';
+  cursor: pointer;
+  
   transition: transform 0.3s ease;
 }
 
@@ -69,7 +125,12 @@ body{
   transform: scale(1.1);
 }
 
-.button:active {
+.button_black:hover {
+  background-color: #414141;
+  transform: scale(1.1);
+}
+
+.button:active, .button_black:active {
   animation: explosion 0.3s;
 }
 

@@ -82,8 +82,8 @@ final class MysqlForumRepository implements ForumRepository
 
         if (!$row) {
             return new Forum(
-                '',
-                '',
+                'ERROR404',
+                'ERROR404',
                 new DateTime(),
                 new DateTime()
             );

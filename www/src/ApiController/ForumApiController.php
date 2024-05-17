@@ -38,8 +38,11 @@ final class ForumApiController
         return $this->twig->render($response, 'forum.twig');
 
     }
+
     public function getAllForums(Request $request, Response $response, array $args): Response
 {
+
+    
     $forums = $this->forumRepository->getAllForums();
     
     //filter
@@ -70,7 +73,7 @@ public function postForum(Request $request, Response $response, array $args): Re
     $description = $body['description'] ?? null;
 
     if (!$title || !$description) {
-        $errorMessage = json_encode(['error' => 'Title and description are required']);
+        $errorMessage = json_encode(['message' => 'A required input was missing.']);
         $response->getBody()->write($errorMessage);
         return $response->withStatus(400)->withHeader('Content-Type', 'application/json');
     }
@@ -100,11 +103,13 @@ public function deleteForum(Request $request, Response $response, array $args): 
 {
     $forumId = $args['id'];
 
+    
+
     $deleted = $this->forumRepository->deleteForum((int)$forumId);
 
     if ($deleted) {
         
-        return $response->withStatus(201)->withHeader('Content-Type', 'application/json');
+        return $response->withStatus(200)->withHeader('Content-Type', 'application/json');
     } else {
        
         return $response->withStatus(401)->withHeader('Content-Type', 'application/json');
@@ -120,23 +125,22 @@ public function getForum(Request $request, Response $response, array $args): Res
     $forum = $this->forumRepository->getForumById((int)$forumId);
 
 
-    $responseData = [
+    $responseData = [];
+    $forumObtained = [
         'id' => $forum->getId(),
         'title' => $forum->getTitle(),
         'description' => $forum->getDescription()
     ];
 
+    $responseData[] = $forumObtained;
     $payload = json_encode($responseData);
 
     $response->getBody()->write($payload);
 
-    return $response->withStatus(201)->withHeader('Content-Type', 'application/json');
+    return $response->withStatus(200)->withHeader('Content-Type', 'application/json');
 
    
 }
-
-
-
 
 
 }

@@ -4,7 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px; /* Gap between cards */
+    gap: 10px; 
     background-color: transparent;
 }
 
@@ -16,9 +16,9 @@
     width: 100px;
     height: 100px;
     display: flex;
-    justify-content: center; /* Align horizontally */
-    align-items: center; /* Align vertically */
-    position: relative; /* Required for absolute positioning of labels */
+    justify-content: center; 
+    align-items: center; 
+    position: relative; 
     transform:
         rotateX(51deg)
         rotateZ(43deg);
@@ -55,6 +55,7 @@
     rotateZ(43deg);
     transition:
         .4s ease-in-out transform;
+        
 }
 .card-5{
     transform:
@@ -76,11 +77,7 @@
     transition:
         .2s ease-in-out transform,
         opacity 0.5s ease;
-        
-        
-
 }
-
 
 .navbar:hover .card-1, 
 .navbar:hover .card-2,
@@ -96,36 +93,42 @@
     transform:
         translate3d(1000px, -16px, 0px)
        ;
-    
-   
-    opacity: 0;
-        
-        
+
+    opacity: 0;    
 }
 
 
 .label-navBar{
-    /* Additional styles for the label */
-    color: rgb(255, 255, 255); /* Change label color */
-    font-size: 20px; /* Adjust font size */
+    
+    color: rgb(255, 255, 255); 
+    font-size: 20px; 
     font: status-bar;
-    font-weight: bold; /* Make it bold */
-    position: absolute; /* Position label relative to card */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Move back by half of its own size */
-    transition: opacity 0.4s ease-in-out; /* Smooth transition for opacity */
+    font-weight: bold; 
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%); 
+    transition: opacity 0.4s ease-in-out; 
     cursor: pointer;
 }
 
 
+.card-1:hover,
+.card-2:hover,
+.card-3:hover,
+.card-4:hover,
+.card-5:hover{
+    background-color: #5c5b5b;
+    cursor: pointer;
+
+}
 .navbar_container {
     position: fixed;
     bottom: 0;
     left: 0;
-    padding: 10px; /* Adjust as needed */
-    background-color: transparent; /* Background color for navbar */
-    cursor: pointer;
+    padding: 10px; 
+    background-color: transparent; 
+   
    
 }
 

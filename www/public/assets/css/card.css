@@ -1,8 +1,7 @@
 body {
     background: white;
     padding: 0 24px;
-    color: white; /* Change my color to yellow */
-    margin: 0;
+    color: white;     margin: 0;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -17,10 +16,7 @@ body {
     width: 100px;
     height: 100px;
     display: flex;
-    justify-content: center; /* Align horizontally */
-    align-items: center; /* Align vertically */
-    position: relative; /* Required for absolute positioning of labels */
-    transform:
+    justify-content: center;     align-items: center;     position: relative;     transform:
         rotateX(51deg)
         rotateZ(43deg);
     transform-style: preserve-3d;
@@ -47,29 +43,16 @@ body {
 }
 
 .label-1 {
-    /* Additional styles for the label */
-    color: black; /* Change label color */
-    font-size: 14px; /* Adjust font size */
-    font-weight: bold; /* Make it bold */
-    position: absolute; /* Position label relative to card */
-    top: 50%; /* Center vertically */
-    left: 50%; /* Center horizontally */
-    transform: translate(-50%, -50%); /* Move back by half of its own size */
-    transition: opacity 0.4s ease-in-out; /* Smooth transition for opacity */
-}
+        color: black;     font-size: 14px;     font-weight: bold;     position: absolute;     top: 50%;     left: 50%;     transform: translate(-50%, -50%);     transition: opacity 0.4s ease-in-out; }
 
 .card-stacked .label-1 {
-    opacity: 1; /* Initially visible */
-}
+    opacity: 1; }
 
 .card-unstacked .label-1 {
-    opacity: 0; /* Initially hidden */
-}
+    opacity: 0; }
 
 .card:hover .card-stacked .label-1 {
-    opacity: 0; /* Make stacked label disappear on hover */
-}
+    opacity: 0; }
 
 .card:hover .card-unstacked .label-1 {
-    opacity: 1; /* Make unstacked label appear on hover */
-}
+    opacity: 1; }

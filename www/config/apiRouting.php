@@ -5,24 +5,28 @@ declare(strict_types=1);
 use PWP\ApiController\ForumApiController;
 use PWP\ApiController\PostApiController;
 
+use PWP\Middleware\AuthenticationMiddleware;
+use PWP\Middleware\apiMiddleware;
+use PWP\Middleware\forumMiddleware;
+
 
 //Needs Authentication Middleware:
 
 //Forums
-$app->get('/forums', ForumApiController::class . ':showForm');
+$app->get('/forums', ForumApiController::class . ':showForm')->add(AuthenticationMiddleware::class);
 
-$app->get('/api/forums', ForumApiController::class . ':getAllForums');
-$app->post('/api/forums', ForumApiController::class . ':postForum');
-$app->delete('/api/forums/{id}', ForumApiController::class . ':deleteForum');
-$app->get('/api/forums/{id}', ForumApiController::class . ':getForum');
+$app->get('/api/forums', ForumApiController::class . ':getAllForums')->add(apiMiddleware::class);
+$app->post('/api/forums', ForumApiController::class . ':postForum')->add(apiMiddleware::class);
+$app->delete('/api/forums/{id}', ForumApiController::class . ':deleteForum')->add(apiMiddleware::class)->add(forumMiddleware::class);
+$app->get('/api/forums/{id}', ForumApiController::class . ':getForum')->add(apiMiddleware::class)->add(forumMiddleware::class);
 
 
 
 //Posts
-$app->get('/forums/{id}/posts', PostApiController::class . ':showForm');
+$app->get('/forums/{id}/posts', PostApiController::class . ':showForm')->add(AuthenticationMiddleware::class);;
 
-$app->get('/api/forums/{id}/posts', PostApiController::class . ':getAllPosts');
-$app->post('/api/forums/{id}/posts', PostApiController::class . ':createPost');
+$app->get('/api/forums/{id}/posts', PostApiController::class . ':getAllPosts')->add(apiMiddleware::class)->add(forumMiddleware::class);
+$app->post('/api/forums/{id}/posts', PostApiController::class . ':createPost')->add(apiMiddleware::class);
 
 
 

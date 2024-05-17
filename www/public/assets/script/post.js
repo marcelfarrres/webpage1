@@ -2,8 +2,16 @@ function renderPost(post) {
     const postList = document.getElementById('post-list');
     const postItem = document.createElement('li');
     postItem.innerHTML = `
-        <h3 class="label">${post.title}</h3>
-        <p class="label">${post.contents}</p>
+    <div class="third_container">
+        <div class="second_container">
+            <h3 class="label1">${post.title}</h3>
+            <p class="label2">${post.contents}</p>
+        </div>
+        <div class="second_container">
+            <img class="user-post-image" src="/uploads/${post.opProfilePicture}" alt="Profile Picture">
+            <p class="label2">Username: ${post.opUsername}</p>
+        </div>
+    </div>
     `;
     postList.appendChild(postItem);
 }
@@ -17,9 +25,10 @@ function fetchForumDetails(forumId) {
             }
             return res.json();
         })
-        .then(forum => {
+        .then(forums => {
            
             // Render forum name and description
+            const forum = forums[0];
             const forumName = forum['title'];
             const forumDescription = forum['description'];
             document.getElementById('forum-details').innerHTML += `

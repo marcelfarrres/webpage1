@@ -1,7 +1,7 @@
 .rating {
     display: inline-block;
     position: relative;
-    color: white; /* Set text color to white for better visibility */
+    color: white; 
 }
 
 .rating input {
@@ -16,8 +16,7 @@
     font-size: 18px;
     line-height: 20px;
     text-align: center;
-    color: white; /* Set text color to white for better visibility */
-}
+    color: white; }
 
 .rating label:before {
     content: '★';
@@ -40,7 +39,6 @@
     color: gold;
 }
 
-/* Animation */
 .rating label {
     transition: color 0.2s;
 }

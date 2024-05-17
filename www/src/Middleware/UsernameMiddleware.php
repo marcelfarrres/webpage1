@@ -15,7 +15,7 @@ use Slim\Routing\RouteContext;
 use PWP\Model\UserRepository;
 use Slim\Flash\Messages;
 
-final class AuthenticationMiddleware
+final class UsernameMiddleware
 {
     public function __construct(
         private Messages $flash,
@@ -24,14 +24,14 @@ final class AuthenticationMiddleware
 
     public function __invoke(Request $request, RequestHandler $next): ResponseInterface
     {
-        //check if the user is not logged in
-        if (!isset($_SESSION['email']) || !$this->userRepository->checkIfUserExists($_SESSION['email'])) {
-            $this->flash->addMessage('AuthenticationMiddlewareMessage', 'User not signed in!');
-            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-            return (new Response())->withHeader('Location', $routeParser->urlFor("sign-in"))->withStatus(302);
-        }
-
         
+
+        //check if the usernsame is not null
+        if (!$this->userRepository->checkIfUsernameExists($_SESSION['email'])) {
+            $this->flash->addMessage('AuthenticationMiddlewareMessage', 'Please add a username!');
+            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+            return (new Response())->withHeader('Location', $routeParser->urlFor("profile"))->withStatus(302);
+        }
 
         return $next->handle($request);
     }

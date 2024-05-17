@@ -1,3 +1,5 @@
+<div class="third_container">
+
 <form action="{{ url_for('review', { 'id': book.id}) }}" method="POST">
     <input type="hidden" name="_METHOD" value="PUT"/>
     {% if review %}
@@ -9,4 +11,10 @@
 
     
     <button class="button" type="submit">Submit Review</button>
+    
 </form>
+<form action="{{ url_for('review', { 'id': book.id}) }}" method="POST">
+    <input type="hidden" name="_METHOD" value="DELETE"/>
+    <button class="button" type="submit">Delete Review</button>
+</form>
+</div>

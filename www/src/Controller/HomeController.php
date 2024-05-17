@@ -15,7 +15,6 @@ final class HomeController
 
     private Messages $flash;
 
-    // You can also use https://stitcher.io/blog/constructor-promotion-in-php-8
     public function __construct(Twig $twig, Messages $flash)
     {
         $this->twig = $twig;

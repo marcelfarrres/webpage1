@@ -3,14 +3,16 @@ function renderForum(forum) {
     
     const forumItem = document.createElement('li');
     forumItem.innerHTML = `
+    <div class="third_container">
         <div class="label">
-            <p>${forum.title}</p>
-            <p>${forum.description}</p>
+            <p class="label1">${forum.title}</p>
+            <p class="label2">${forum.description}</p>
         </div>
         <div class="actions">
             <button class='button' onclick="deleteForum(${forum.id})">Delete</button>
         </div>
         <a class="button" href="/forums/${forum.id}/posts">Enter</a>
+        </div>
     `;
     forumList.appendChild(forumItem);
 }
@@ -38,7 +40,7 @@ function fetchForums() {
         })
         .catch(err => {
             console.error('Error fetching forums:', err);
-            window.location.href = "/";
+            
         });
 }
 
@@ -105,7 +107,7 @@ function createForum(event) {
     })
     .catch(err => {
         console.error('Error creating forum:', err);
-        window.location.href = "/";
+        
     });
 }
 

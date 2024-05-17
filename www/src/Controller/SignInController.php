@@ -66,21 +66,17 @@ final class SignInController
             $errors['password'] = 'Your email and/or password are incorrect.';
         }
     
-        // If there are no errors, proceed with the sign in
+       
         if (empty($errors)) {
             
             try {
                
-                
                 $_SESSION['email'] = $data['email'];
-               
 
-                
-                // Redirect to success page
                 $routeParser = RouteContext::fromRequest($request)->getRouteParser();
                 return $response->withHeader('Location',  $routeParser->urlFor("home"))->withStatus(302);
             } catch (Exception $exception) {
-                // Handle exceptions
+                
                 $routeParser = RouteContext::fromRequest($request)->getRouteParser();
                 return $response->withHeader('Location',  $routeParser->urlFor("visits"))->withStatus(401);
             }

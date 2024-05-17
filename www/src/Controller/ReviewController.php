@@ -50,22 +50,19 @@ final class ReviewController
         return $response->withHeader('Location', $routeParser->urlFor('details', ['id' => $id]))->withStatus(302);
     }
 
+    
     public function deleteReview(Request $request, Response $response, array $args): Response
     {
+    
         $id = $args['id'] ?? '';
         
-        $book = $this->bookRepository->getBookById((int)$id);
+        $user = $this->userRepository->getUserbyEmail($_SESSION['email']);
         
-        if (!$book) {
-            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-            return $response->withHeader('Location',  $routeParser->urlFor("home"))->withStatus(302);
-        }
+        $this->reviewRepository->deleteReview($user->id(),(int)$id);
         
-        // Delete the review logic here
-        
-        // Redirect to the book details page after deleting the review
-        $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-        return $response->withHeader('Location', $routeParser->urlFor('book_details', ['id' => $id]))->withStatus(302);
+       // Redirect to the book details page after adding the review
+       $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+       return $response->withHeader('Location', $routeParser->urlFor('details', ['id' => $id]))->withStatus(302);
     }
 
 }

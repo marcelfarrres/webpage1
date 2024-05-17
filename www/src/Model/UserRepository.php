@@ -22,5 +22,9 @@ interface UserRepository
 
     public function isUsernameUnique(string $username): bool;
 
+    public function checkIfUsernameExists(string $email): bool ;
+
+    public function getUserbyId(int $id): User;
+
     
 }

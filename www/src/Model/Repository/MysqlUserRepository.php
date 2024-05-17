@@ -107,8 +107,13 @@ public function getUserbyEmail(string $email): User
         new DateTime($data['created_at']),
         new DateTime($data['updated_at'])
     );
-    $user->setUsername($data['username']);
-    $user->setProfile_picture($data['profile_picture']);
+
+    if (isset($data['username'])) {
+        $user->setUsername($data['username']);
+    }    
+    if (isset($data['profile_picture'])) {
+        $user->setProfile_picture($data['profile_picture']);
+    }
     $user->setId($data['id']);
     return $user;
 }
@@ -155,7 +160,55 @@ public function isUsernameUnique(string $username): bool
     return $result['count'] === 0;
 }
 
+public function checkIfUsernameExists(string $email): bool 
+    {
+        $query = <<<'QUERY'
+        SELECT * FROM users WHERE email = :email
+        QUERY;
+    
+        $statement = $this->database->prepare($query);
+        $statement->bindParam(':email', $email, PDO::PARAM_STR);
+        $statement->execute();
+
+        $result = $statement->fetch(PDO::FETCH_ASSOC);
+        if($result['username'] == null){
+            return false;
+        }else{
+            return true;
+        }
+         
+    }
 
 
+
+    public function getUserbyId(int $id): User
+{
+    $query = <<<'QUERY'
+    SELECT * FROM users WHERE id = :id
+    QUERY;
+
+    $statement = $this->database->prepare($query);
+    $statement->bindParam(':id', $id, PDO::PARAM_STR);
+    $statement->execute();
+
+    $data = $statement->fetch(PDO::FETCH_ASSOC);
+
+    // Create new user
+    $user = new User(
+        $data['email'],
+        '',
+        new DateTime($data['created_at']),
+        new DateTime($data['updated_at'])
+    );
+
+    if (isset($data['username'])) {
+        $user->setUsername($data['username']);
+    }    
+    if (isset($data['profile_picture'])) {
+        $user->setProfile_picture($data['profile_picture']);
+    }
+    $user->setId($data['id']);
+    return $user;
+}
 
 }

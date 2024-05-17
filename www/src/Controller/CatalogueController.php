@@ -55,7 +55,6 @@ final class CatalogueController
     if(!empty($data['isbn']) ){
         
     $bookAndWorkKey = $this->bookService->getBookByISBN($data['isbn']);
-
     //return [ 'book' => $book, 'workKey' => $responseArray['works'][0]['key'] ];
 
     $bookAndAuthorKey = $this->bookService->updateBookByWorkId($bookAndWorkKey['workKey'], $bookAndWorkKey['book']);
@@ -69,18 +68,18 @@ final class CatalogueController
 
     if(!empty($data['title']) ){
         // Create a new Book object
-    $book = new Book(
-        $data['title'],
-        $data['author'],
-        $data['description'],
-        (int)$data['numberOfPages'],
-        $data['coverImageUrl'] ?? null, // Use null coalescing operator to handle optional cover image URL
-        new DateTime(), // Assuming current date and time for createdAt
-        new DateTime()  // Assuming current date and time for updatedAt
-    );
-    
-    // Save the book
-    $this->bookRepository->save($book);
+        $book = new Book(
+            $data['title'],
+            $data['author'],
+            $data['description'],
+            (int)$data['numberOfPages'],
+            $data['coverImageUrl'] ?? null, 
+            new DateTime(), 
+            new DateTime() 
+        );
+
+        // Save the book
+        $this->bookRepository->save($book);
     }
     
     
@@ -88,6 +87,7 @@ final class CatalogueController
     $routeParser = RouteContext::fromRequest($request)->getRouteParser();
     return $response->withHeader('Location', $routeParser->urlFor('catalogue'))->withStatus(302);
 }
+
 
 
 }

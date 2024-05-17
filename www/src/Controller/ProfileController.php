@@ -28,7 +28,8 @@ final class ProfileController
 
     public function showProfile(Request $request, Response $response): Response
     {
-        
+        $messages = $this->flash->getMessages();
+        $AuthenticationMiddlewareMessages = $messages['AuthenticationMiddlewareMessage'] ?? [];
         
         $user = $this->userRepository->getUserbyEmail( $_SESSION['email']);
         $routeParser = RouteContext::fromRequest($request)->getRouteParser();
@@ -36,7 +37,9 @@ final class ProfileController
         return $this->twig->render($response, 'profile.twig', [
             'user' => $user,
             'formAction' => $routeParser->urlFor("profile"),
-            'formMethod' => "POST"
+            'formMethod' => "POST",
+            'AuthenticationMiddlewareMessage' => !empty($AuthenticationMiddlewareMessages) ? $AuthenticationMiddlewareMessages[0] : null
+
         
         ]);
     }

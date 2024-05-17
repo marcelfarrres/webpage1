@@ -1,55 +1,64 @@
-# TODO 1rst srpint (create a functional flow)
 
 - [x] Public Pages
     - [x] Landing Page 
     - [x] Sign-up 
     - [x] Sign-in 
 
-- [ ] Middleware
-    - [ ] AuthenticationMiddleware: Profile and ... cannot be acccessed by unisgned Users
+- [x] Middleware
+    - [x] AuthenticationMiddleware: Profile and ... cannot be acccessed by unisgned Users
        |---[x] General Structure working.
        |---[x] How can I create a response in other way.
 
-    - [ ] FirstTimeMiddleware: When an user accesses any private page without having set their   username, they are redirected to the profile page with a flash message
+    - [x] UsernameMiddleware: When an user accesses any private page without having set their   username, they are redirected to the profile page with a flash message
 
-- [ ] CSS
+- [x] CSS
     - [x] Create a general CSS for all views
     - [x] button class and map all buttons views 
 
-- [ ] EXTERNAL APIS-Repositories //TODO: How to distribute the api calls and the Database calls
+- [x] EXTERNAL APIS-Repositories //TODO: How to distribute the api calls and the Database calls
     - [x] UserRepository
     - [x] BookRepository
-    - [ ] GuzzleService
+    - [x] GuzzleService
 
 
-- [ ] Private Pages
-    - [ ] Profile 
+- [x] Private Pages
+    - [x] Profile 
        |---[x] Main Structure and modifing the Database 
        |---[x] ProfileController: handle Image Error
        |---[x] ProfileController - Profile.twig: Username not showing after updating. 
        |---[x] ProfileController: check if username is unique
        |---[x] ProfileController: how to persist the image
     
-    - [ ] Catalogue 
+    - [x] Catalogue 
        |---[x] Main Structure and routing
        |---[x] Create and connect the BookRepository
        |---[x] Forms distribution
        |---[x] Implement the BookService created
 
-    - [ ] Book Details
+    - [x] Book Details
        |---[x] Hacer lo de /catalogue/id
        
-    - [ ] Book Ratings and Reviews
+    - [x] Book Ratings and Reviews
         |---[x] Add and get
-        |---[ ] Delete Rating
-        |---[ ] Delete Review
+        |---[x] Delete Rating
+        |---[x] Delete Review
 
-    - [ ] Discussion Forums
-    - [ ] Forum Posts
+    - [x] Discussion Forums
+    - [x] Forum Posts
 
-- [ ] Extra Features
+- [x] Extra Features
     - [x] Navigation Menu Sidebar
-    - [ ] Discussion Forums (API)
+    - [x] Discussion Forums (API)
+
+- [x] Last Fixes
+    - [x] error responses of the api commands
+    - [x] delete Rates and Reviews
+    - [x] fix most of comments
+    - [x] fix code beautyness
+    - [x] Change the general typography
+    - [x] Fix the main view
+    - [x] NAVBAR fix
+
 
 - [ ] Delivery 
     - [ ] include INSTRUCTIONS.md

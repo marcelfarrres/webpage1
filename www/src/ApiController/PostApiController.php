@@ -43,16 +43,23 @@ final class PostApiController
     public function getAllPosts(Request $request, Response $response, array $args): Response
     {
         $forumId = $args['id'] ?? '';
+
         $posts = $this->postRepository->getAllPosts((int)$forumId);
+       
         
         // Filter
         $postsData = [];
 
         foreach ($posts as $post) {
+
+            $user = $this->userRepository->getUserbyId((int) $post->getUserId());
+
             $postData = [
                 'id' => $post->getId(),
                 'title' => $post->getTitle(),
-                'contents' => $post->getContents()
+                'contents' => $post->getContents(),
+                'opUsername' => $user->username(),
+                'opProfilePicture' => $user->profile_picture()
             ];
 
             $postsData[] = $postData;
@@ -75,7 +82,7 @@ final class PostApiController
 
 
         if (!$title || !$contents) {
-            $errorMessage = json_encode(['error' => 'Title and contents are required']);
+            $errorMessage = json_encode(['message' => 'A required input was missing.']);
             $response->getBody()->write($errorMessage);
             return $response->withStatus(400)->withHeader('Content-Type', 'application/json');
         }
@@ -87,11 +94,15 @@ final class PostApiController
         $this->postRepository->save($newPost);
 
         $newPost = $this->postRepository->getLastPostAdded();
+        $user = $this->userRepository->getUserbyId((int) $newPost->getUserId());
+
 
         $responseData = [
             'id' => $newPost->getId(),
             'title' => $newPost->getTitle(),
-            'contents' => $newPost->getContents()
+            'contents' => $newPost->getContents(),
+            'opUsername' => $user->username(),
+            'opProfilePicture' => $user->profile_picture()
         ];
 
         $payload = json_encode($responseData);

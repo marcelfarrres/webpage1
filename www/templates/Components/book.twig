@@ -14,14 +14,13 @@
                     {% endif %}
                     <p class="book-text">Created At: {{ book.createdAt|date('Y-m-d H:i:s') }}</p>
                     <p class="book-text">Updated At: {{ book.updatedAt|date('Y-m-d H:i:s') }}</p>
+                    
                     <div class="show-details">
                         <form action="{{ url_for('details', { 'id': book.id}) }}" method="{{ formMethodDetails }}">
-                            <button type="submit">Show Details</button>
+                            <button class="button_black" type="submit">Show Details</button>
                         </form>
+ 
                         
-                            
-                            
-                        </form>
                     </div>
                 </div>
                 

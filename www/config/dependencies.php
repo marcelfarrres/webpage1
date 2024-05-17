@@ -25,14 +25,6 @@ use PWP\Model\PostRepository;
 use PWP\Model\Repository\MysqlPostRepository;
 
 
-
-
-
-
-
-
-
-
 $container = new Container();
 
 $container->set('view', function () {

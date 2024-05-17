@@ -47,11 +47,7 @@ final class RateController
         $book = $this->bookRepository->getBookById((int)$id);
         $user = $this->userRepository->getUserbyEmail($_SESSION['email']);
         
-
-
         $this->rateRepository->putRating($user->id(),(int)$id, (int)$data['rating']);
-        
-        
         
         
        // Redirect to the book details page after adding the review
@@ -62,20 +58,16 @@ final class RateController
 
     public function deleteRating(Request $request, Response $response, array $args): Response
     {
+    
         $id = $args['id'] ?? '';
         
-        $book = $this->bookRepository->getBookById((int)$id);
+        $user = $this->userRepository->getUserbyEmail($_SESSION['email']);
         
-        if (!$book) {
-            $routeParser = RouteContext::fromRequest($request)->getRouteParser();
-            return $response->withHeader('Location',  $routeParser->urlFor("home"))->withStatus(302);
-        }
+        $this->rateRepository->deleteRating($user->id(),(int)$id);
         
-        
-        return $this->twig->render($response, 'details.twig', [
-            'book' => $book
-        ]);
-
+       // Redirect to the book details page after adding the review
+       $routeParser = RouteContext::fromRequest($request)->getRouteParser();
+       return $response->withHeader('Location', $routeParser->urlFor('details', ['id' => $id]))->withStatus(302);
     }
 
 

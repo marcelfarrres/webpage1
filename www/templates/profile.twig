@@ -4,6 +4,11 @@
 
 {% block content %}
 <div class="main_container">
+
+{% if AuthenticationMiddlewareMessage %}
+        <li class="warningMessage">{{ AuthenticationMiddlewareMessage }}</li>
+    {% endif %}
+    
     <form class="secondary_container" data-cy="profile" action="{{ formAction }}" method="{{ formMethod }}" accept-charset="utf-8" enctype="multipart/form-data">
         <div class="form-group">
             <label class="label" for="email">Email:</label>
