@@ -70,6 +70,6 @@ nb-configuration.xml
 # Visual Studio Code
 .vscode/
 
-
+uploads/
 vendor/
 
