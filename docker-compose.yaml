@@ -31,7 +31,6 @@ services:
     image: mysql:latest
     platform: linux/amd64
     container_name: ${PROJECT_PREFIX}_${PROJECT_NAME}_mysql
-    command: mysqld --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     ports:
       - ${MYSQL_PORT}:3306
